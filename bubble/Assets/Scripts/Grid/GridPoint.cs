@@ -12,11 +12,13 @@ public class GridPoint : MonoBehaviour
 
     bool explored; // only matters for floor tiles - if Bub has walked on it
     [SerializeField] public tileType type;
+    public int x_pos;
+    public int y_pos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        type = tileType.FLOOR;
+        type = tileType.FOG;
     }
 
     public void changeType(tileType newType)
@@ -37,5 +39,9 @@ public class GridPoint : MonoBehaviour
 
     public tileType getType() {
         return type;
+    }
+
+    void OnMouseDown() {
+        GridGen.updateOnBubblePlaced(x_pos, y_pos);
     }
 }
