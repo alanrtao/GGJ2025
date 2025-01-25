@@ -73,7 +73,6 @@ public class TurnObject : MonoBehaviour
                         break;
                     case MultipleActionResolution.DoNotAddInTurn:
                         return -1;
-                        break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
                 }

@@ -13,7 +13,7 @@ public class Character : TurnObject
     TurnResult RepeaterA(TurnContext ctx, TurnObject to)
     {
         const int interval = 5;
-        Debug.Log($"Repeater A invocation {m_repeaterA}, next invocation in {interval} turns...");
+        Debug.Log($"Repeater A invocation {++m_repeaterA}, next invocation in {interval} turns...");
         ScheduleAfterNow(interval, new TurnActionLambda(RepeaterA), MultipleActionResolution.AddAsFirstInTurn);
         return TurnResult.Continue;
     }
@@ -22,7 +22,7 @@ public class Character : TurnObject
     TurnResult RepeaterB(TurnContext ctx, TurnObject to)
     {
         const int interval = 2;
-        Debug.Log($"Repeater B invocation {m_repeaterB}, next invocation in {interval} turns...");
+        Debug.Log($"Repeater B invocation {++m_repeaterB}, next invocation in {interval} turns...");
         ScheduleAfterNow(interval, new TurnActionLambda(RepeaterB), MultipleActionResolution.AddAsFirstInTurn);
         return TurnResult.Continue;
     }
