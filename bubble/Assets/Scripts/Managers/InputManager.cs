@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        pauseMenu.SetActive(m_paused);
+        if (pauseMenu != null) pauseMenu.SetActive(m_paused);
         AudioManager.SetPaused(m_paused);
     }
 
@@ -103,7 +103,7 @@ public class InputManager : MonoBehaviour
     {
         m_paused = !m_paused;
         Time.timeScale = m_paused ? 0 : 1;
-        pauseMenu.SetActive(m_paused);
+        if (pauseMenu != null) pauseMenu.SetActive(m_paused);
         AudioManager.SetPaused(m_paused);
     }
 

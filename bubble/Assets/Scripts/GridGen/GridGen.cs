@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GridGen : MonoBehaviour
@@ -6,6 +7,13 @@ public class GridGen : MonoBehaviour
     [SerializeField] float gridScale;
     [SerializeField] int gridWidth;
     [SerializeField] int gridHeight;
+
+    public static GridGen Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
