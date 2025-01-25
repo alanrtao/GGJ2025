@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GridPoint : MonoBehaviour
 {
-    enum tileType {
+    public enum tileType {
         EDGE, //Tile next to a wall
         FOG, //Currently invisible
         FLOOR, // walk in it
@@ -11,7 +11,7 @@ public class GridPoint : MonoBehaviour
     }
 
     bool explored; // only matters for floor tiles - if Bub has walked on it
-    [SerializeField] tileType type;
+    [SerializeField] public tileType type;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +19,7 @@ public class GridPoint : MonoBehaviour
         type = tileType.FLOOR;
     }
 
-    void changeType(tileType newType)
+    public void changeType(tileType newType)
     {
         type = newType;
     }
@@ -30,5 +30,12 @@ public class GridPoint : MonoBehaviour
         if (type == tileType.FOG) {
             this.GetComponent<Renderer>().enabled = false;
         }
+        if (type == tileType.FLOOR) {
+            this.GetComponent<Renderer>().enabled = true;
+        }
+    }
+
+    public tileType getType() {
+        return type;
     }
 }
