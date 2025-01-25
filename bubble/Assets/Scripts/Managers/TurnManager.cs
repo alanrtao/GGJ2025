@@ -18,6 +18,7 @@ public class TurnManager : MonoBehaviour
     private int turnIntervalSeconds = 3;
 
     private bool m_paused;
+    private int m_turn;
     
     [SerializeField]
     private GameObject pauseMenu;
@@ -38,36 +39,39 @@ public class TurnManager : MonoBehaviour
         {
             m_paused = !m_paused;
             Time.timeScale = m_paused ? 0 : 1;
-            pauseMenu.SetActive(m_paused);
+            if (m_paused)
+            {
+                pauseMenu.SetActive(m_paused);
+            }
         }
     }
 
+    public static TurnContext CurrentCtx => new TurnContext()
+    {
+        TurnNumber = Instance.m_turn
+    };
+
     private IEnumerator Turn()
     {
-        int turn = 0;
         while (!gameFinished)
         {
-            TurnContext ctx = new()
-            {
-                TurnNumber = turn
-            };
+            TurnContext ctx = CurrentCtx;
 
-            turnObjects = turnObjects.Where(to =>
+            var actions = turnObjects.Select(to 
+                => to.Schedule.Count == 0 ? (to, null as ITurnAction) : (to, to.Schedule.Dequeue()));
+
+            turnObjects = actions.Where(to_act =>
             {
-                var res = TurnResult.Continue;
-                if (to.Schedule.Count == 0)
-                {
-                    res = to.IdleTurn(ctx);
-                }
-                else
-                {
-                    var act = to.Schedule.Dequeue();
-                    res = act.DoAction(ctx, to);
-                }
+                var (to, act) = to_act;
+                var res = act?.DoAction(ctx, to) ?? to.IdleTurn(ctx);
                 return res != TurnResult.Destroyed;
+            }).Select(to_act =>
+            {
+                var (to, act) = to_act;
+                return to;
             }).ToList();
             yield return new WaitForSeconds(turnIntervalSeconds); // timescale = 0 will freeze this, this is intended
-            ++turn;
+            ++m_turn;
         }
     }
 }
