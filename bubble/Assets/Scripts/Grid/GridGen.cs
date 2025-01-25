@@ -35,10 +35,14 @@ public class GridGen : MonoBehaviour
 
     public static void updateOnBubblePlaced(int i, int j) {
         //Ok, so we've been clicked, add new visible area around where we have clicked
+        if (BubbleManager.current_bubbles == 0) {
+            return;
+        }
         GameObject ref1 = GameObject.Find("GridPoint:" + i + "," + j);
         //make neighbors around ref1 visible/not fog anymore
         //Wall was clicked, turn void neighbors into
         //Look at all tiles around ref1
+        BubbleManager.loseBubble();
         ref1.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
         bool allChecked = false;
         int counter = 3;
