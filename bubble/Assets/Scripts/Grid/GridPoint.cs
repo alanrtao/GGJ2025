@@ -18,7 +18,7 @@ public class GridPoint : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        type = tileType.FOG;
+        type = tileType.ABYSS;
     }
 
     public void changeType(tileType newType)
@@ -29,11 +29,11 @@ public class GridPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (type == tileType.FOG) {
-            this.GetComponent<Renderer>().enabled = false;
+        if (type == tileType.ABYSS) {
+            this.GetComponent<SpriteRenderer>().color = Color.white;
         }
         if (type == tileType.FLOOR) {
-            this.GetComponent<Renderer>().enabled = true;
+            this.GetComponent<SpriteRenderer>().color = Color.black;
         }
     }
 
@@ -42,7 +42,7 @@ public class GridPoint : MonoBehaviour
     }
 
     void OnMouseDown() {
-        if (this.type == ABYSS) {
+        if (this.type == tileType.ABYSS) {
              GridGen.updateOnBubblePlaced(x_pos, y_pos);
         }
     }

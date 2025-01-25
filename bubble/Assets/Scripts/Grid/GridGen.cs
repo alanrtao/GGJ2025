@@ -39,6 +39,7 @@ public class GridGen : MonoBehaviour
         //make neighbors around ref1 visible/not fog anymore
         //Wall was clicked, turn void neighbors into
         //Look at all tiles around ref1
+        ref1.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
         bool allChecked = false;
         int counter = 3;
         int i_diff = -1;
@@ -50,54 +51,10 @@ public class GridGen : MonoBehaviour
             }
             if (i_diff == -1 && j_diff == 0) {
                 j_diff = 1;
-            }
-            if (j_diff == -1 && j_diff == 1) {
+            } else if (i_diff == -1 && j_diff == 1) {
                 i_diff = 0;
                 j_diff = 1;
             }
         }
-        // while (counter >= 0 || !allChecked) {
-        //     GameObject ref2 = GameObject.Find("GridPoint:" + (i - 1) + "," + j);
-        //     if (ref2 != null && ref2.GetComponent<GridPoint>().getType() == GridPoint.tileType.FOG) {
-        //         ref2.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
-        //         counter--;
-        //     }
-        //     ref2 = GameObject.Find("GridPoint:" + (i - 1) + "," + (j + 1));
-        //     if (ref2 != null && ref2.GetComponent<GridPoint>().getType() == GridPoint.tileType.FOG) {
-        //         ref2.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
-        //         counter--;
-        //     }
-        //     ref2 = GameObject.Find("GridPoint:" + (i) + "," + (j + 1));
-        //     if (ref2 != null && ref2.GetComponent<GridPoint>().getType() == GridPoint.tileType.FOG) {
-        //         ref2.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
-        //         counter--;
-        //     }
-        //     ref2 = GameObject.Find("GridPoint:" + (i + 1) + "," + (j + 1));
-        //     if (ref2 != null && ref2.GetComponent<GridPoint>().getType() == GridPoint.tileType.FOG) {
-        //         ref2.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
-        //         counter--;
-        //     }
-        //     ref2 = GameObject.Find("GridPoint:" + (i + 1) + "," + (j));
-        //     if (ref2 != null && ref2.GetComponent<GridPoint>().getType() == GridPoint.tileType.FOG) {
-        //         ref2.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
-        //         counter--;
-        //     }
-        //     ref2 = GameObject.Find("GridPoint:" + (i + 1) + "," + (j - 1));
-        //     if (ref2 != null && ref2.GetComponent<GridPoint>().getType() == GridPoint.tileType.FOG) {
-        //         ref2.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
-        //         counter--;
-        //     }
-        //     ref2 = GameObject.Find("GridPoint:" + (i) + "," + (j - 1));
-        //     if (ref2 != null && ref2.GetComponent<GridPoint>().getType() == GridPoint.tileType.FOG) {
-        //         ref2.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
-        //         counter--;
-        //     }
-        //     ref2 = GameObject.Find("GridPoint:" + (i - 1) + "," + (j - 1));
-        //     if (ref2 != null && ref2.GetComponent<GridPoint>().getType() == GridPoint.tileType.FOG) {
-        //         ref2.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
-        //         counter--;
-        //     }
-        //     allChecked = true;
-        // }
     }
 }
