@@ -27,6 +27,8 @@ public class GridPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (type == tileType.FOG) {
+            this.GetComponent<Renderer>().enabled = false;
+        }
     }
 }

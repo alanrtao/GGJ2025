@@ -30,4 +30,57 @@ public class GridGen : MonoBehaviour
             }
         }
     }
+
+    void updateOnBubblePlaced(int i, int j) {
+        //Ok, so we've been clicked, add new visible area around where we have clicked
+        GameObject ref1 = Find("GridPoint:" + i + "," + j);
+        //make neighbors around ref1 visible/not fog anymore
+        //Wall was clicked, turn void neighbors into
+        //Look at all tiles around ref1
+        bool allChecked = false;
+        int counter = 3;
+        while (counter >= 0 || allChecked) {
+            ref2 = Find("GridPoint:" + (i - 1) + "," + j);
+            if (ref2 != null && ref2.tileType == tileType.ABYSS) {
+                ref2.changeType(tileType.FLOOR);
+                counter--;
+            }
+            ref2 = Find("GridPoint:" + (i - 1) + "," + (j + 1));
+            if (ref2 != null && ref2.tileType == tileType.ABYSS) {
+                ref2.changeType(tileType.FLOOR);
+                counter--;
+            }
+            ref2 = Find("GridPoint:" + (i) + "," + (j + 1));
+            if (ref2 != null && ref2.tileType == tileType.ABYSS) {
+                ref2.changeType(tileType.FLOOR);
+                counter--;
+            }
+            ref2 = Find("GridPoint:" + (i + 1) + "," + (j + 1));
+            if (ref2 != null && ref2.tileType == tileType.ABYSS) {
+                ref2.changeType(tileType.FLOOR);
+                counter--;
+            }
+            ref2 = Find("GridPoint:" + (i + 1) + "," + (j));
+            if (ref2 != null && ref2.tileType == tileType.ABYSS) {
+                ref2.changeType(tileType.FLOOR);
+                counter--;
+            }
+            ref2 = Find("GridPoint:" + (i + 1) + "," + (j - 1));
+            if (ref2 != null && ref2.tileType == tileType.ABYSS) {
+                ref2.changeType(tileType.FLOOR);
+                counter--;
+            }
+            ref2 = Find("GridPoint:" + (i) + "," + (j - 1));
+            if (ref2 != null && ref2.tileType == tileType.ABYSS) {
+                ref2.changeType(tileType.FLOOR);
+                counter--;
+            }
+            ref2 = Find("GridPoint:" + (i - 1) + "," + (j - 1));
+            if (ref2 != null && ref2.tileType == tileType.ABYSS) {
+                ref2.changeType(tileType.FLOOR);
+                counter--;
+            }
+        }
+
+    }
 }
