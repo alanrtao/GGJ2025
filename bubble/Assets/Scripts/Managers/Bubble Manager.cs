@@ -3,10 +3,10 @@ using UnityEngine;
 public class BubbleManager : MonoBehaviour
 {
     public static BubbleManager Instance;
-    public int current_bubbles;
-    int max_bubbles;
-    int remaining_health;
-    int used_bubbles;
+    public static int current_bubbles;
+    public static int max_bubbles;
+    public static int remaining_health;
+    public static int used_bubbles;
 
 
 
