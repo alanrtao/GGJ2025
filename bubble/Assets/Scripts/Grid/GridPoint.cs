@@ -6,7 +6,7 @@ public class GridPoint : MonoBehaviour
         EDGE, //Tile next to a wall
         FOG, //Currently invisible
         FLOOR, // walk in it
-        SPACE, //no walk in it
+        ABYSS, //no walk in it
         WALL //impassable
     }
 
@@ -17,6 +17,11 @@ public class GridPoint : MonoBehaviour
     void Start()
     {
         type = tileType.FLOOR;
+    }
+
+    void changeType(tileType newType)
+    {
+        type = newType;
     }
 
     // Update is called once per frame
