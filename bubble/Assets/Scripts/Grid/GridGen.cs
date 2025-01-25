@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GridGen : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class GridGen : MonoBehaviour
     [SerializeField] public int gridHeight;
     [SerializeField] public static List<GameObject> bubbleTiles;
     [SerializeField] public static List<GameObject> allGridPoints;
+    
+    
+    public static GridGen Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +48,8 @@ public class GridGen : MonoBehaviour
                 }
             }
         }
+        
+        BubblePostProcManager.OnGridInitialize(bubbleTiles.Select(bt => bt.GetComponent<GridPoint>()));
     }
 
     public static void updateOnBubblePlaced(int i, int j) {
@@ -54,6 +65,7 @@ public class GridGen : MonoBehaviour
         //BubbleManager.loseBubble();
 
         ref1.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
+        bubbleTiles.Add(ref1);
         bool allChecked = false;
         int counter = 3;
         int i_diff = -1;
@@ -72,6 +84,7 @@ public class GridGen : MonoBehaviour
             }
         }
         updateVoidTiles();
+        BubblePostProcManager.OnGridUpdate(bubbleTiles.Select(bt => bt.GetComponent<GridPoint>()));
     }
 
     static void updateVoidTiles() {

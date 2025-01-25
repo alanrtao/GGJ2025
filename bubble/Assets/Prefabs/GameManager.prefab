@@ -47,8 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8822e0eb8a81e84ca393d56b4862930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnObjects:
-  - {fileID: 0}
+  turnObjects: []
   turnIntervalSeconds: 3
 --- !u!114 &5585649890875257221
 MonoBehaviour:
@@ -97,3 +96,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f196916acbc4fff41853a47b91a14484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: a634cb2d9a5445042bda9c9eda09b9a2, type: 2}
