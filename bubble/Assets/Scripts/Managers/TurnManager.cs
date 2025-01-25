@@ -16,12 +16,7 @@ public class TurnManager : MonoBehaviour
     
     [SerializeField]
     private int turnIntervalSeconds = 3;
-
-    private bool m_paused;
     private int m_turn;
-    
-    [SerializeField]
-    private GameObject pauseMenu;
     
     private void Awake()
     {
@@ -31,16 +26,6 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Turn());
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            m_paused = !m_paused;
-            Time.timeScale = m_paused ? 0 : 1;
-            pauseMenu.SetActive(m_paused);
-        }
     }
 
     public static TurnContext CurrentCtx => new TurnContext()
