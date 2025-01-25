@@ -42,6 +42,8 @@ public class GridPoint : MonoBehaviour
     }
 
     void OnMouseDown() {
-        GridGen.updateOnBubblePlaced(x_pos, y_pos);
+        if (this.type == ABYSS) {
+             GridGen.updateOnBubblePlaced(x_pos, y_pos);
+        }
     }
 }
