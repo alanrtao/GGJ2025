@@ -39,10 +39,7 @@ public class TurnManager : MonoBehaviour
         {
             m_paused = !m_paused;
             Time.timeScale = m_paused ? 0 : 1;
-            if (m_paused)
-            {
-                pauseMenu.SetActive(m_paused);
-            }
+            pauseMenu.SetActive(m_paused);
         }
     }
 
