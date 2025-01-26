@@ -3,27 +3,20 @@ using System.Linq;
 
 namespace Utils
 {
-    public struct Vertex
-    {
-        public List<Vertex> GetNeighbors()
-        {
-            return new List<Vertex>();
-        }
-    }
-    
     public static class GraphAlgo
     {
         /**
          * Returns null if no 
          */
-        public static bool TryCreateBubble(HashSet<Vertex> newlyPlaced, out HashSet<Vertex> newBubble)
+        public static bool TryCreateBubble(HashSet<GridPoint> newlyPlaced, out HashSet<GridPoint> newBubble)
         {
-            HashSet<Vertex> allNeighbors = new HashSet<Vertex>(newlyPlaced.SelectMany(p => p.GetNeighbors()).Where(p => !newlyPlaced.Contains(p))) ;
+            HashSet<GridPoint> allNeighbors = new HashSet<GridPoint>(
+                newlyPlaced.SelectMany(p => GridGen.GetNeighbors(p, GridGen.IsBubble)).Where(p => !newlyPlaced.Contains(p))) ;
             var enclosures = allNeighbors.Select(Bfs);
 
             // merge equivalent enclosures (completely overlapping)
             {
-                var enclosures_ = new List<HashSet<Vertex>>();
+                var enclosures_ = new List<HashSet<GridPoint>>();
                 foreach (var enc in enclosures)
                 {
                     // stepping into the middle of a bubble
@@ -66,10 +59,10 @@ namespace Utils
             return true;
         }
 
-        private static HashSet<Vertex> Bfs(Vertex start)
+        private static HashSet<GridPoint> Bfs(GridPoint start)
         {
-            var reached = new HashSet<Vertex>(new Vertex[] { start });
-            var todo = new Queue<Vertex>(start.GetNeighbors());
+            var reached = new HashSet<GridPoint>(new[] { start });
+            var todo = new Queue<GridPoint>(GridGen.GetNeighbors(start, GridGen.IsBubble));
             while (todo.TryDequeue(out var p))
             {
                 if (!reached.Add(p))
@@ -77,7 +70,7 @@ namespace Utils
                     continue;
                 }
 
-                foreach (var q in p.GetNeighbors())
+                foreach (var q in GridGen.GetNeighbors(p, GridGen.IsBubble))
                 {
                     todo.Enqueue(q);   
                 }

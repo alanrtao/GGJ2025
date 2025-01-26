@@ -33,15 +33,13 @@ public class GridPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (type == tileType.ABYSS) {
-            this.GetComponent<SpriteRenderer>().color = Color.white;
-        }
-        if (type == tileType.FLOOR) {
-            this.GetComponent<SpriteRenderer>().color = Color.black;
-        }
-        if (type == tileType.FOG) {
-            this.GetComponent<SpriteRenderer>().color = Color.gray;
-        }
+        this.GetComponent<SpriteRenderer>().color = type switch
+        {
+            tileType.ABYSS => Color.white,
+            tileType.FLOOR => Color.black,
+            tileType.FOG => Color.gray,
+            _ => this.GetComponent<SpriteRenderer>().color
+        };
     }
 
     public tileType getType() {
