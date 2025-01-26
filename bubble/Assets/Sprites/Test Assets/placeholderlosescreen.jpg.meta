@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4404a1ef1f4459a4d826e5a9ca375470
+guid: c474c3a09f4259d4c85221ad662c250a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1996322553025917021
-    second: PennyTest_0
+      213: 7282109134660314682
+    second: placeholderlosescreen_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,19 +97,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -126,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PennyTest_0
+      name: placeholderlosescreen_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 345
-        height: 464
+        width: 1663
+        height: 759
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d50f536f8cc54bb10800000000000000
-      internalID: 1996322553025917021
+      spriteID: a362e0bfcaf3f0560800000000000000
+      internalID: 7282109134660314682
       vertices: []
       indices: 
       edges: []
@@ -160,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      PennyTest_0: 1996322553025917021
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

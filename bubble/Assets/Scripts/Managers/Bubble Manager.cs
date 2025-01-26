@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BubbleManager : MonoBehaviour
 {
@@ -45,6 +46,9 @@ public class BubbleManager : MonoBehaviour
         }
         TEMP_Bubble_Health.text = "Health: " + current_health;
         TEMP_Bubbles_Remaining.text = "Bubbles: " + current_bubbles;
+        if (current_health <= 0) {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     public static void loseBubble() {
@@ -55,6 +59,7 @@ public class BubbleManager : MonoBehaviour
         current_health -= deduction;
         if (current_health < 0) {
             current_health = 0;
+            
         }
     }
 
