@@ -1600,6 +1600,48 @@ MonoBehaviour:
       Data3: -1270894948
       Data4: 953052762
     Path: event:/Music/Game
+  Footsteps:
+    Guid:
+      Data1: -1716766440
+      Data2: 1234110712
+      Data3: 1498744488
+      Data4: -826193154
+    Path: event:/Sfx/Footstep
+  HurtBubble:
+    Guid:
+      Data1: 177646298
+      Data2: 1244214275
+      Data3: -162910574
+      Data4: -194510649
+    Path: event:/Sfx/BubbleHurt
+  BubblePlacement:
+    Guid:
+      Data1: -1355087738
+      Data2: 1104461468
+      Data3: 1434193846
+      Data4: 769426822
+    Path: event:/Sfx/BubblePlacement
+  SmallBubblePop:
+    Guid:
+      Data1: 2128422937
+      Data2: 1136625750
+      Data3: 186943662
+      Data4: -1265283065
+    Path: event:/Sfx/BubblePopSmall
+  BigBubblePop:
+    Guid:
+      Data1: 474637220
+      Data2: 1092153541
+      Data3: 1176367766
+      Data4: 1170320783
+    Path: event:/Sfx/BubblePopBig
+  BubbleLoopTemplate:
+    Guid:
+      Data1: 1794581943
+      Data2: 1282418075
+      Data3: 2098005900
+      Data4: 342731820
+    Path: event:/Sfx/BubbleCombineShort
 --- !u!1 &1823432692
 GameObject:
   m_ObjectHideFlags: 0
