@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      placeholderlosescreen_0: 7282109134660314682
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
