@@ -1,32 +1,44 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 
 public class BubblePostProcManager : MonoBehaviour
 {
     // texture matching the grid size, R channel = x, G channel = y, B channel = vacant or filled
-    private static Texture2D m_dat;
+    private Texture2D m_dat;
     
     [SerializeField] private Material material;
     private static readonly int GridID = Shader.PropertyToID("_Grid");
 
-    public static BubblePostProcManager Instance;
-    
-    private void Awake()
+    [SerializeField] private GridPoint.tileType responsibility;
+
+    public static void OnGridInitialize()
     {
-        Instance = this;
+        foreach (var man in FindObjectsByType<BubblePostProcManager>(FindObjectsInactive.Exclude,
+                     FindObjectsSortMode.None))
+        {
+            man.m_dat = new Texture2D(GridGen.Instance.gridWidth, GridGen.Instance.gridHeight, TextureFormat.R8, false); // replace with gridgen width and height
+        }
+        OnGridUpdate();
     }
 
-    public static void OnGridInitialize(IEnumerable<GridPoint> pts)
+    public static void OnGridUpdate()
     {
-        m_dat = new Texture2D(GridGen.Instance.gridWidth, GridGen.Instance.gridHeight, TextureFormat.R8, false); // replace with gridgen width and height
-        OnGridUpdate(pts);
-    }
-
-    public static void OnGridUpdate(IEnumerable<GridPoint> pts)
-    {
-        Instance?.UpdateGrid(pts);
+        foreach (var man in FindObjectsByType<BubblePostProcManager>(FindObjectsInactive.Exclude,
+                     FindObjectsSortMode.None))
+        {
+            // Debug.Log($"{man} -> {man.responsibility}");
+            // foreach (var p in GridGen.allGridPoints)
+            // {
+            //     Debug.Log($"[{p.type}]: {p}");
+            //     if (p.type == man.responsibility)
+            //     {
+            //         Debug.Log($"[{man.responsibility}]: {p}");
+            //     }
+            // }
+            man.UpdateGrid(GridGen.allGridPoints.Where(p => p.type == man.responsibility));
+        }
     }
     
     void UpdateGrid(IEnumerable<GridPoint> pts)

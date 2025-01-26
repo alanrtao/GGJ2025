@@ -1,10 +1,13 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class Character : TurnObject
 {
@@ -17,9 +20,20 @@ public class Character : TurnObject
     bool hasNeedle;
     bool[] fulfilledDesires;
 
+    Animator animator;
+    String currentTrigger;
+    
+
+
+    [SerializeField] private RawImage indicatorBg;
+    [SerializeField] private RawImage indicatorFg;
+    [SerializeField] private TMPro.TextMeshProUGUI indicatorTxt;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentTrigger = " ";
         bub_x_pos = 0;
         bub_y_pos = 0;
         bubMoveSpeed = 2;
@@ -28,6 +42,7 @@ public class Character : TurnObject
         fulfilledDesires = new bool[7] {false, false, false, false, false, false, false};
         transform.position = new Vector3(bub_x_pos, bub_y_pos, 0);
         ScheduleDecideNewState(1, State.Idle);
+        animator = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -35,7 +50,7 @@ public class Character : TurnObject
         if (hasNeedle) {
             updateNeedleTimer();
         }
-        transform.position = new Vector3(bub_x_pos, bub_y_pos, 0);
+        // transform.position = new Vector3(bub_x_pos, bub_y_pos, 0);
     }
 
     // private int m_repeaterA = 0;
@@ -198,7 +213,7 @@ public class Character : TurnObject
         // already on edge, bump into bubble and deduct health
         if (attackDirection != null)
         {
-            // TODO: animate bumping in the direction of nearbyNonBubble
+            StartCoroutine(BumpWall(attackDirection));
             BubbleManager.loseHealth(bubStrength);
         }
         else
@@ -217,7 +232,7 @@ public class Character : TurnObject
 
     bool OnEdge(out GridPoint adjBubble)
     { 
-        var neighbors = GridGen.GetNeighbors(current, GridGen.Not(GridGen.IsBubble));
+        var neighbors = GridGen.GetNeighbors(current, GridGen.Not(GridGen.IsBubble), allowDiagonals: false);
         if (neighbors.Count == 0)
         {
             adjBubble = null;
@@ -228,11 +243,69 @@ public class Character : TurnObject
         adjBubble = neighbors_[Random.Range(0, neighbors_.Length)];
         return true;
     }
+    
+    # region appearance
+    IEnumerator BumpWall(GridPoint wall)
+    {
+        var start = transform.position;
+        for (float i = 0; i < 0.2f; i+=Time.deltaTime)
+        {
+            transform.position = Vector3.Lerp(start, wall.transform.position, Mathf.Sin((i / 0.2f) * Mathf.PI) * 0.3f);
+            yield return null;
+        }
+        transform.position = start;
+    }
 
+    [SerializeField] private Transform indicatorRoot;
+    private IEnumerator FlashIndicator()
+    {
+        for (float i = 0; i < 0.5; i += Time.deltaTime)
+        {
+            indicatorRoot.localPosition = new Vector3(0, Mathf.Sin((i / 0.5f) * Mathf.PI) * 0.3f, 0);
+            yield return null;
+        }
+
+        indicatorRoot.localPosition = Vector3.zero;
+    }
+
+    private string m_prevIndicated = "";
     void IndicateState(State state)
     {
-        Debug.Log($"Bub state = {state}");
+        var curr = state == State.Landmark ? $"{state}-{bubDesire}" : $"{state}";
+        if (m_prevIndicated != curr)
+        {
+            StartCoroutine(FlashIndicator());
+            m_prevIndicated = curr;
+        }
+        indicatorTxt.text = state.ToString();
+        switch (state)
+        {
+            case State.Idle:
+                indicatorTxt.text = "...";
+                indicatorFg.enabled = false;
+                break;
+            case State.Item:
+                indicatorTxt.text = "";
+                indicatorFg.enabled = true;
+                break;
+            case State.Landmark:
+                indicatorTxt.text = "";
+                indicatorFg.enabled = true;
+                break;
+            case State.Escape:
+                indicatorTxt.text = ":(";
+                indicatorFg.enabled = false;
+                break;
+            case State.Explore:
+                indicatorTxt.text = ":3";
+                indicatorFg.enabled = false;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(state), state, null);
+        }
+        // Debug.Log($"Bub state = {state}");
     }
+    #endregion
     //
     // GameObject selectMoveTarget() {
     //     // PRIORITIES
@@ -296,9 +369,40 @@ public class Character : TurnObject
         PrintPath(path);
 
         var p = path.First();
+
+        int x_diff = p.x_pos - bub_x_pos;
+        int y_diff = p.y_pos - bub_y_pos;
+        if (!currentTrigger.Equals(" ")) {
+            animator.ResetTrigger(currentTrigger);
+        }
+        if (x_diff == 0 && y_diff == 0) {
+            currentTrigger = "idle_trigger";
+            // animator.SetTrigger("idle_trigger"); //No diagonal animation, so I'll prioritize using up/forward anims for that
+        } 
+        if (x_diff > 0) {
+            currentTrigger = "move_left";
+            // animator.SetTrigger("move_right");
+        } 
+        if (x_diff < 0) {
+            currentTrigger = "move_right";
+        } 
+        if (bub_y_pos < p.y_pos) {
+            currentTrigger = "move_up";
+            // animator.SetTrigger("move_up");
+        } 
+        if (p.y_pos < bub_y_pos) {
+            currentTrigger = "move_forward";
+            // animator.SetTrigger("move_forward");
+        }
+        
+        animator.SetTrigger(currentTrigger);
+
+        transform.position = new Vector3(p.x_pos, p.y_pos, 0);
+
         bub_x_pos = p.x_pos;
         bub_y_pos = p.y_pos;
         p.explored = true;
+        
     }
 
     GridPoint.itemType TakeItem(GridPoint p)
