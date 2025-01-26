@@ -140,6 +140,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: bubbleRegenAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: healthRecoverAmount
       value: 4
       objectReference: {fileID: 0}

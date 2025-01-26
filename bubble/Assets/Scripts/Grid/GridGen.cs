@@ -118,6 +118,7 @@ public class GridGen : MonoBehaviour
                 } else if (itemCount < 3*itemRatioMult) {
                     gp.item = GridPoint.itemType.BUBBLE_WAND;
                 } else if (itemCount < 5*itemRatioMult) {
+                    gp.hasItem = false;
                     //gp.item = GridPoint.itemType.SPIKE_BALL;
                 } else {
                     gp.item = GridPoint.itemType.BUBBLE_BOTTLE;
@@ -179,6 +180,8 @@ public class GridGen : MonoBehaviour
                 q.changeType(GridPoint.tileType.FLOOR);
                 bubbleTiles.Add(q);
             }
+
+            BubbleManager.refundBubbles();
         }
 
         updateVoidTiles();
