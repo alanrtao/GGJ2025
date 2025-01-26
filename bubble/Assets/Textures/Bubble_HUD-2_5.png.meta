@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bubble_HUD-2_5_0: -1560812009064113495
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

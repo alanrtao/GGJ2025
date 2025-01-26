@@ -42,6 +42,7 @@ public class BubbleManager : MonoBehaviour
     private float m_regenTimer;
     [SerializeField] public int regenTimerThreshold;
     [SerializeField] public int regenAmount;
+    [SerializeField] public int bubbleRegenAmount;
     [SerializeField] public int placableBubbleAmount;
     [SerializeField] public int healthRecoverAmount;
 
@@ -73,6 +74,7 @@ public class BubbleManager : MonoBehaviour
         m_regenTimer += Time.deltaTime;
         if (m_regenTimer >= regenTimerThreshold) {
             regenHealth();
+            regenBubbles();
             m_regenTimer = 0;
         }
         // Debug.Log(m_current_health);
@@ -124,6 +126,11 @@ public class BubbleManager : MonoBehaviour
 
     public static void regenHealth() {
         addHealth(Instance.regenAmount);
+    }
+
+    public static void regenBubbles()
+    {
+        addBubbles(Instance.bubbleRegenAmount);
     }
 
     public static void setMaxHealth(int newMax) {
