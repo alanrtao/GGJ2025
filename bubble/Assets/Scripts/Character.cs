@@ -313,12 +313,11 @@ public class Character : TurnObject
             currentTrigger = "move_right";
             // animator.SetTrigger("move_right");
         } else if (x_diff < 0 && y_diff == 0) {
-            currentTrigger = "idle_left";
-            // animator.SetTrigger("move_left");
-        } else if (y_diff > 0) {
+            currentTrigger = "move_left";
+        } else if (bub_y_pos > p.y_pos) {
             currentTrigger = "move_up";
             // animator.SetTrigger("move_up");
-        } else if (y_diff < 0) {
+        } else if (p.y_pos < bub_y_pos) {
             currentTrigger = "move_forward";
             // animator.SetTrigger("move_forward");
         }
