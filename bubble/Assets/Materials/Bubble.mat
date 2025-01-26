@@ -45,13 +45,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BubbleFillStrength: 0.15
     - _BubbleInnerStrength: 0.72
     - _BubbleOuterStrength: 0.82
     - _BubbleSize: 11.91
     - _BubbleSizeInner: 3.28
     - _BubbleSizeOuter: 0.8
     - _GridSize: 1
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 0.7146226, g: 0.9528302, b: 0.91199464, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7619173717082858751
