@@ -49,7 +49,7 @@ public class BubbleManager : MonoBehaviour
     [SerializeField] private Material hpMaterial;
     [SerializeField] private Material energyMaterial;
     [SerializeField] private Material bubbleMaterial;
-    private Color m_bubbleDefaultColor;
+    [SerializeField] private Color bubbleDefaultColor;
     private static readonly int k_Hp01 = Shader.PropertyToID("_hp01");
     private static readonly int k_Color = Shader.PropertyToID("_Color");
 
@@ -64,7 +64,7 @@ public class BubbleManager : MonoBehaviour
     {
         current_bubbles = max_bubbles;
         current_health = max_health;
-        m_bubbleDefaultColor = bubbleMaterial.GetColor(k_Color);
+        bubbleMaterial.SetColor(k_Color, bubbleDefaultColor);
     }
 
     // Update is called once per frame
@@ -93,9 +93,10 @@ public class BubbleManager : MonoBehaviour
         Instance.current_health -= deduction;
         if (Instance.current_health < 0) {
             Instance.current_health = 0;
+            AudioManager.PlaySound(AudioManager.Asset.BigBubblePop);
             SceneManager.LoadScene("GameOver");
         }
-        Instance.bubbleMaterial.SetColor(k_Color, Instance.m_bubbleDefaultColor);
+        Instance.bubbleMaterial.SetColor(k_Color, Instance.bubbleDefaultColor);
         Instance.StopAllCoroutines();
         Instance.StartCoroutine(Instance.HealthAnimation(Color.red));
     }
@@ -115,7 +116,7 @@ public class BubbleManager : MonoBehaviour
         for (float i = 0; i < 0.2f; i += Time.deltaTime)
         {
             var t = (0.2f - i) / 0.2f;
-            var c = m_bubbleDefaultColor + overlay * t;
+            var c = bubbleDefaultColor + overlay * t;
             bubbleMaterial.SetColor(k_Color, c);
             yield return null;
         }

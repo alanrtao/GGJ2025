@@ -53,7 +53,7 @@ Material:
     - _BubbleSizeOuter: 0.8
     - _GridSize: 1
     m_Colors:
-    - _Color: {r: 0.75557816, g: 0.9891234, b: 0.8987184, a: 0.075023696}
+    - _Color: {r: 0.768068, g: 0.9528302, b: 0.91199464, a: 0.0534454}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7619173717082858751

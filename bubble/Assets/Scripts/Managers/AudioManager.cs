@@ -8,17 +8,47 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-
-
+    
     [SerializeField] private EventReference title;
     private EventInstance m_Title;
     [SerializeField] private EventReference inGame;
     private EventInstance m_InGame;
 
+    public EventReference Footsteps;
+    public EventReference HurtBubble;
+    public EventReference BubblePlacement;
+    public EventReference SmallBubblePop;
+    public EventReference BigBubblePop;
+    public EventReference BubbleLoopTemplate;
+
+    public enum Asset
+    {
+        Footsteps,
+        HurtBubble,
+        BubblePlacement,
+        SmallBubblePop,
+        BigBubblePop,
+        BubbleLoopTemplate
+    }
+    
     private void Awake()
     {
         Instance = this;
         DontDestroyOnLoad(Instance);
+    }
+
+    public static void PlaySound(Asset sound)
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(sound switch
+        {
+            Asset.Footsteps => Instance.Footsteps,
+            Asset.HurtBubble => Instance.HurtBubble,
+            Asset.BubblePlacement => Instance.BubblePlacement,
+            Asset.SmallBubblePop => Instance.SmallBubblePop,
+            Asset.BigBubblePop => Instance.BigBubblePop,
+            Asset.BubbleLoopTemplate => Instance.BubbleLoopTemplate,
+            _ => throw new Exception("pawoeifjaow")
+        });
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

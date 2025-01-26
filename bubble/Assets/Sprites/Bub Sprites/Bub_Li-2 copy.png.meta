@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bub_Li-2 copy_0: 105840545391831621
+      Bub_Li-2 copy_1: 4303436835494798163
+      Bub_Li-2 copy_2: -4794013735993521944
+      Bub_Li-2 copy_3: -8798808570379596846
+      Bub_Li-2 copy_4: 4567474352274931556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
