@@ -103,8 +103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_bubbles: 50
   max_health: 500
-  TEMP_Bubble_Health: {fileID: 0}
-  TEMP_Bubbles_Remaining: {fileID: 0}
   regenTimerThreshold: 1
   regenAmount: 5
   placableBubbleAmount: 3
@@ -112,3 +110,4 @@ MonoBehaviour:
   hpMaterial: {fileID: 2100000, guid: cd32f9acb3117c74191bf0940421eebd, type: 2}
   energyMaterial: {fileID: 2100000, guid: d78b41fc86a281844bfa0262576c2408, type: 2}
   bubbleMaterial: {fileID: 2100000, guid: a634cb2d9a5445042bda9c9eda09b9a2, type: 2}
+  bubbleDefaultColor: {r: 0.7146226, g: 0.9528302, b: 0.91199464, a: 0}
