@@ -1,17 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Utils
 {
     public static class GraphAlgo
     {
+        private static Func<GridPoint, bool> _notBubble = GridGen.Not(GridGen.IsBubble);
+        
         /**
          * Returns null if no 
          */
         public static bool TryCreateBubble(HashSet<GridPoint> newlyPlaced, out HashSet<GridPoint> newBubble)
         {
             HashSet<GridPoint> allNeighbors = new HashSet<GridPoint>(
-                newlyPlaced.SelectMany(p => GridGen.GetNeighbors(p, GridGen.IsBubble)).Where(p => !newlyPlaced.Contains(p))) ;
+                newlyPlaced.SelectMany(p => GridGen.GetNeighbors(p, _notBubble)).Where(p => !newlyPlaced.Contains(p))) ;
             var enclosures = allNeighbors.Select(Bfs);
 
             // merge equivalent enclosures (completely overlapping)
@@ -22,7 +25,7 @@ namespace Utils
                     // stepping into the middle of a bubble
                     if (enc.Count <= 1)
                     {
-                        
+                        continue;
                     }
                     
                     foreach (var enc_ in enclosures_)
@@ -62,7 +65,7 @@ namespace Utils
         private static HashSet<GridPoint> Bfs(GridPoint start)
         {
             var reached = new HashSet<GridPoint>(new[] { start });
-            var todo = new Queue<GridPoint>(GridGen.GetNeighbors(start, GridGen.IsBubble));
+            var todo = new Queue<GridPoint>(GridGen.GetNeighbors(start, _notBubble));
             while (todo.TryDequeue(out var p))
             {
                 if (!reached.Add(p))
@@ -70,7 +73,7 @@ namespace Utils
                     continue;
                 }
 
-                foreach (var q in GridGen.GetNeighbors(p, GridGen.IsBubble))
+                foreach (var q in GridGen.GetNeighbors(p, _notBubble))
                 {
                     todo.Enqueue(q);   
                 }

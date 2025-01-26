@@ -3,7 +3,7 @@ using UnityEngine;
 public class Character : TurnObject
 {
     [SerializeField] GameObject currentTargetPoint;
-    GameObject nextDestination;
+    GridPoint nextDestination;
     int bub_x_pos;
     int bub_y_pos;
     int bubMoveSpeed;
@@ -149,14 +149,15 @@ public class Character : TurnObject
 
     }
 
-    void nextTileToMove() {
-        nextDestination = GameObject.Find("GridPoint:" + bub_x_pos + "," + bub_y_pos);
-        if (nextDestination == null || nextDestination.GetComponent<GridPoint>().getType() == GridPoint.tileType.ABYSS) {
+    void nextTileToMove()
+    {
+        nextDestination = GridGen.Find(bub_x_pos, bub_y_pos);
+        if (nextDestination == null || nextDestination.getType() == GridPoint.tileType.ABYSS) {
             BubbleManager.loseHealth(bubStrength);
         } else {
             //bub_x_pos = nextDestination.GetComponent<GridPoint>().x_pos;
             //bub_y_pos = nextDestination.GetComponent<GridPoint>().y_pos;
-            nextDestination.GetComponent<GridPoint>().explored = true;
+            nextDestination.explored = true;
         }
     }
 
