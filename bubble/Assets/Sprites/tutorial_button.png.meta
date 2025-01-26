@@ -131,155 +131,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TitleScreen-3_0
+      name: tutorial_button_2
       rect:
         serializedVersion: 2
-        x: 873
-        y: 415
-        width: 40
-        height: 53
+        x: 994
+        y: 343
+        width: 360
+        height: 341
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 196bff415b14fa670800000000000000
-      internalID: 8552126463397050001
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TitleScreen-3_1
-      rect:
-        serializedVersion: 2
-        x: 942
-        y: 397
-        width: 24
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: be968847358ee5600800000000000000
-      internalID: 459059657173395947
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TitleScreen-3_2
-      rect:
-        serializedVersion: 2
-        x: 993
-        y: 342
-        width: 362
-        height: 343
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a05bee62612060e20800000000000000
-      internalID: 3316340469770663178
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TitleScreen-3_3
-      rect:
-        serializedVersion: 2
-        x: 853
-        y: 390
-        width: 21
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0f1febbbfe0ed620800000000000000
-      internalID: 2800692492623617804
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TitleScreen-3_4
-      rect:
-        serializedVersion: 2
-        x: 857
-        y: 398
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 17d4ff40ac1025fb0800000000000000
-      internalID: -4660660697196180111
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TitleScreen-3_5
-      rect:
-        serializedVersion: 2
-        x: 937
-        y: 386
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b41001f41224272b0800000000000000
-      internalID: -5588331476785561269
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TitleScreen-3_6
-      rect:
-        serializedVersion: 2
-        x: 926
-        y: 362
-        width: 7
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 21b0759739f191770800000000000000
-      internalID: 8581925283187591954
+      spriteID: a911e86783eba01489f21c81da178a28
+      internalID: 54907039
       vertices: []
       indices: 
       edges: []
@@ -288,7 +156,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f9fcc5b08bbe1764a82c44ef53b730de
     internalID: 0
     vertices: []
     indices: 
@@ -298,13 +166,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TitleScreen-3_0: 8552126463397050001
-      TitleScreen-3_1: 459059657173395947
-      TitleScreen-3_2: 3316340469770663178
-      TitleScreen-3_3: 2800692492623617804
-      TitleScreen-3_4: -4660660697196180111
-      TitleScreen-3_5: -5588331476785561269
-      TitleScreen-3_6: 8581925283187591954
+      tutorial_button_0: -2031462283
+      tutorial_button_1: 354544632
+      tutorial_button_2: 54907039
+      tutorial_button_3: -1261902058
+      tutorial_button_4: -179141344
+      tutorial_button_5: -200085184
+      tutorial_button_6: -224759158
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
