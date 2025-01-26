@@ -45,11 +45,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BubbleFillStrength: 0.15
-    - _BubbleInnerStrength: 0.72
-    - _BubbleOuterStrength: 0.82
+    - _BubbleFillStrength: 0.04
+    - _BubbleInnerStrength: 1.32
+    - _BubbleOuterStrength: 1.21
     - _BubbleSize: 11.91
-    - _BubbleSizeInner: 3.28
+    - _BubbleSizeInner: 3.34
     - _BubbleSizeOuter: 0.8
     - _GridSize: 1
     m_Colors:
