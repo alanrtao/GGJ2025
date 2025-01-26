@@ -70,30 +70,30 @@ public class Character : TurnObject
     private int m_bubTakeAction = 0;
     TurnResult bubTakeAction(TurnContext ctx, TurnObject to) {
         int interval = bubMoveSpeed;
-        if (nextDestination == null || nextDestination.GetComponent<GridPoint>().getType() == GridPoint.tileType.ABYSS) {
+        if (nextDestination == null || nextDestination.getType() == GridPoint.tileType.ABYSS) {
             BubbleManager.loseHealth(bubStrength);
         } else {
-            bub_x_pos = nextDestination.GetComponent<GridPoint>().x_pos;
-            bub_y_pos = nextDestination.GetComponent<GridPoint>().y_pos;
-            nextDestination.GetComponent<GridPoint>().explored = true;
-            if (nextDestination.GetComponent<GridPoint>().hasLandmark && nextDestination.GetComponent<GridPoint>().getLandmark() != bubDesire) {
-                nextDestination.GetComponent<GridPoint>().explored = false;
+            bub_x_pos = nextDestination.x_pos;
+            bub_y_pos = nextDestination.y_pos;
+            nextDestination.explored = true;
+            if (nextDestination.hasLandmark && nextDestination.getLandmark() != bubDesire) {
+                nextDestination.explored = false;
             }
-            switch (nextDestination.GetComponent<GridPoint>().getItem()) {
+            switch (nextDestination.getItem()) {
                 case GridPoint.itemType.NEEDLE:
                     setBubStrength(99999);
                     hasNeedle = true;
                     break;
                 case GridPoint.itemType.BUBBLE_WAND:
-                    BubbleManager.addBubbles(BubbleManager.placableBubbleAmount);
+                    BubbleManager.addBubbles(BubbleManager.Instance.placableBubbleAmount);
                     break;
                 case GridPoint.itemType.BUBBLE_BOTTLE:
-                    BubbleManager.addHealth(BubbleManager.healthRecoverAmount);
+                    BubbleManager.addHealth(BubbleManager.Instance.healthRecoverAmount);
                     break;
                 default:
                     break;
             }
-            nextDestination.GetComponent<GridPoint>().item = GridPoint.itemType.NONE;
+            nextDestination.item = GridPoint.itemType.NONE;
             //ADD LANDMARK CODE
         }
 
@@ -108,17 +108,17 @@ public class Character : TurnObject
         GameObject priority1Tile = null;
         GameObject priority2Tile = null;
         GameObject priority3Tile = null;
-        foreach (GameObject floorTile in GridGen.bubbleTiles) {
+        foreach (var floorTile in GridGen.bubbleTiles) {
             GridPoint tilePoint = floorTile.GetComponent<GridPoint>();
             // 1. Unvisited Landmarks Inside Bubble
             if (priority1Tile == null && tilePoint.explored == false && tilePoint.hasLandmark == true && tilePoint.landmark == bubDesire) {
-                priority1Tile = floorTile;
+                priority1Tile = floorTile.gameObject;
             // 2. Uncollected Items Inside Bubble
             } else if (priority2Tile == null && tilePoint.explored == false && tilePoint.hasItem == true) {
-                priority2Tile = floorTile;
+                priority2Tile = floorTile.gameObject;
             // 3. Unexplored Tiles
             } else if (priority3Tile == null && tilePoint.explored == false && tilePoint.hasLandmark == false) {
-                priority3Tile = floorTile;
+                priority3Tile = floorTile.gameObject;
             }
         }
         if (priority1Tile != null) {
@@ -133,15 +133,14 @@ public class Character : TurnObject
         } 
         // 4. Nearest Bubble Edge
         int min = 99999999;
-        foreach (GameObject tile in GridGen.allGridPoints) {
-            GridPoint gridTile = tile.GetComponent<GridPoint>();
-            if (gridTile.getType() != GridPoint.tileType.ABYSS) {
+        foreach (var p in GridGen.allGridPoints) {
+            if (p.getType() != GridPoint.tileType.ABYSS) {
                 continue;
             }
-            int tileX = gridTile.x_pos;
-            int tileY = gridTile.y_pos;
+            int tileX = p.x_pos;
+            int tileY = p.y_pos;
             if ((tileX-bub_x_pos)*(tileX-bub_x_pos) + (tileY-bub_y_pos)*(tileY-bub_y_pos) < min) {
-                selectedTile = tile;
+                selectedTile = p.gameObject;
             }
         }
         return selectedTile;

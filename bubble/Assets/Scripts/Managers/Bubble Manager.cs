@@ -4,17 +4,17 @@ using TMPro;
 public class BubbleManager : MonoBehaviour
 {
     public static BubbleManager Instance;
-    [SerializeField] public static int current_bubbles;
-    [SerializeField] public static int max_bubbles;
-    [SerializeField] public static int current_health;
-    [SerializeField] public static int max_health;
+    [SerializeField] public int current_bubbles;
+    [SerializeField] public int max_bubbles;
+    [SerializeField] public int current_health;
+    [SerializeField] public int max_health;
     [SerializeField] public TMP_Text TEMP_Bubble_Health;
     [SerializeField] public TMP_Text TEMP_Bubbles_Remaining;
-    [SerializeField] public static float regenTimer;
-    [SerializeField] public static int regenTimerThreshold;
-    [SerializeField] public static int regenAmount;
-    [SerializeField] public static int placableBubbleAmount;
-    [SerializeField] public static int healthRecoverAmount;
+    [SerializeField] public float regenTimer;
+    [SerializeField] public int regenTimerThreshold;
+    [SerializeField] public int regenAmount;
+    [SerializeField] public int placableBubbleAmount;
+    [SerializeField] public int healthRecoverAmount;
 
 
 
@@ -48,43 +48,43 @@ public class BubbleManager : MonoBehaviour
     }
 
     public static void loseBubble() {
-        current_bubbles--;
+        Instance.current_bubbles--;
     }
 
     public static void loseHealth(int deduction) {
-        current_health -= deduction;
-        if (current_health < 0) {
-            current_health = 0;
+        Instance.current_health -= deduction;
+        if (Instance.current_health < 0) {
+            Instance.current_health = 0;
         }
     }
 
     public static void addHealth(int increase) {
-        current_health += increase;
-        if (current_health > max_health) {
-            current_health = max_health;
+        Instance.current_health += increase;
+        if (Instance.current_health > Instance.max_health) {
+            Instance.current_health = Instance.max_health;
         }
     }
 
     public static void regenHealth() {
-        addHealth(regenAmount);
+        addHealth(Instance.regenAmount);
     }
 
     public static void setMaxHealth(int newMax) {
-        max_health = newMax;
-        if (current_health > max_health) {
-            current_health = max_health;
+        Instance.max_health = newMax;
+        if (Instance.current_health > Instance.max_health) {
+            Instance.current_health = Instance.max_health;
         }
     }
 
     public static void refundBubbles() {
-        current_bubbles += (int)(.75 * (max_bubbles - current_bubbles)); //add back 75% of what we lost
-        max_bubbles = current_bubbles;
+        Instance.current_bubbles += (int)(.75 * (Instance.max_bubbles - Instance.current_bubbles)); //add back 75% of what we lost
+        Instance.max_bubbles = Instance.current_bubbles;
     }
 
     public static void addBubbles(int bubbleAmount) {
-        current_bubbles += bubbleAmount;
-        if (current_bubbles > max_bubbles) {
-            current_bubbles = max_bubbles;
+        Instance.current_bubbles += bubbleAmount;
+        if (Instance.current_bubbles > Instance.max_bubbles) {
+            Instance.current_bubbles = Instance.max_bubbles;
         }
     }
 }

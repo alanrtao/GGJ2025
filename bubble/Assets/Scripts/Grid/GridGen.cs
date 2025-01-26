@@ -10,8 +10,8 @@ public class GridGen : MonoBehaviour
     [SerializeField] public float gridScale;
     [SerializeField] public int gridWidth;
     [SerializeField] public int gridHeight;
-    [SerializeField] public static List<GameObject> bubbleTiles;
-    [SerializeField] public static List<GameObject> allGridPoints;
+    [SerializeField] public static List<GridPoint> bubbleTiles = new();
+    [SerializeField] public static List<GridPoint> allGridPoints = new();
     
     
     public static GridGen Instance;
@@ -24,11 +24,10 @@ public class GridGen : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        bubbleTiles = new List<GameObject>();
-        allGridPoints = new List<GameObject>();
+        bubbleTiles = new List<GridPoint>();
+        allGridPoints = new List<GridPoint>();
         genGrid(gridWidth, gridHeight);
         //updateVoidTiles();
-        
     }
 
     // Update is called once per frame
@@ -42,26 +41,28 @@ public class GridGen : MonoBehaviour
             for (int j = -height/2; j < Mathf.CeilToInt(height/2.0f); j++) {
                 GameObject ref1 = Instantiate(gridPoint, new Vector3(i, j, 0), Quaternion.identity);
                 ref1.name = "GridPoint:" + i + "," + j;
-                ref1.GetComponent<GridPoint>().x_pos = i;
-                ref1.GetComponent<GridPoint>().y_pos = j;
-                ref1.GetComponent<GridPoint>().item = GridPoint.itemType.NONE;
-                ref1.GetComponent<GridPoint>().landmark = GridPoint.landmarkType.NONE;
-                allGridPoints.Add(ref1);
+                var p = ref1.GetComponent<GridPoint>();
+                p.x_pos = i;
+                p.y_pos = j;
+                p.item = GridPoint.itemType.NONE;
+                p.landmark = GridPoint.landmarkType.NONE;
+                
+                allGridPoints.Add(p);
                 if ((int)(Mathf.Abs(i)) < 2 && (int)(Mathf.Abs(j)) < 2) {
-                    ref1.GetComponent<GridPoint>().explored = true;
-                    bubbleTiles.Add(ref1);
+                    p.explored = true;
+                    bubbleTiles.Add(p);
                 } else {
-                    ref1.GetComponent<GridPoint>().explored = false;
+                    p.explored = false;
                 }
             }
         }
         
-        BubblePostProcManager.OnGridInitialize(bubbleTiles.Select(bt => bt.GetComponent<GridPoint>()));
+        BubblePostProcManager.OnGridInitialize(bubbleTiles);
     }
 
     public static void updateOnBubblePlaced(int i, int j) {
         //Ok, so we've been clicked, add new visible area around where we have clicked
-        if (BubbleManager.current_bubbles == 0) {
+        if (BubbleManager.Instance.current_bubbles == 0) {
             return;
         }
         BubbleManager.loseBubble();
@@ -71,7 +72,7 @@ public class GridGen : MonoBehaviour
         //Look at all tiles around ref1
         
         p.changeType(GridPoint.tileType.FLOOR);
-        bubbleTiles.Add(p.gameObject);
+        bubbleTiles.Add(p);
         var newlyPlaced = new HashSet<GridPoint>();
         newlyPlaced.Add(p);
 
@@ -82,7 +83,7 @@ public class GridGen : MonoBehaviour
             var q = Find((i + i_diff), (j + j_diff));
             if (q != null && q.getType() == GridPoint.tileType.ABYSS) {
                 q.changeType(GridPoint.tileType.FLOOR);
-                bubbleTiles.Add(q.gameObject);
+                bubbleTiles.Add(q);
                 newlyPlaced.Add(q);
             }
             if (i_diff == -1 && j_diff == 0) {
@@ -99,7 +100,7 @@ public class GridGen : MonoBehaviour
             foreach (var q in newBubble)
             {
                 q.changeType(GridPoint.tileType.FLOOR);
-                bubbleTiles.Add(q.gameObject);
+                bubbleTiles.Add(q);
             }
         }
         
@@ -109,8 +110,8 @@ public class GridGen : MonoBehaviour
 
     static void updateVoidTiles() {
         foreach (var tile in bubbleTiles) {
-            int tileX = tile.GetComponent<GridPoint>().x_pos;
-            int tileY = tile.GetComponent<GridPoint>().y_pos;
+            int tileX = tile.x_pos;
+            int tileY = tile.y_pos;
             for (int i = -2; i < 3; i++) {
                 for (int j = -2; j < 3; j++) {
                     var p = Find(tileX + i, tileY + j);
