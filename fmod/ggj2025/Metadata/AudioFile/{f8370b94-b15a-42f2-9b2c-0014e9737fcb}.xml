@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{f8370b94-b15a-42f2-9b2c-0014e9737fcb}">
 		<property name="assetPath">
-			<value>614096__zhr__calm-emtim-bell-music.mp3</value>
+			<value>Temp/614096__zhr__calm-emtim-bell-music.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
