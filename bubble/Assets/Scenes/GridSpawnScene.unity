@@ -127,6 +127,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: max_health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: max_bubbles
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: regenAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: healthRecoverAmount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: regenTimerThreshold
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: placableBubbleAmount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: title.Path
       value: event:/Music/Main Menu
@@ -466,6 +490,14 @@ PrefabInstance:
     - target: {fileID: 3383124356689616017, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: bubStrength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: needleTimer
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
       propertyPath: 'indicatorDesires.Array.data[0]'
