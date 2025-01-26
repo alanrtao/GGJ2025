@@ -42,9 +42,9 @@ public class BubbleManager : MonoBehaviour
             m_regenTimer = 0;
         }
 
-        TEMP_Bubble_Health.text = "Health: " + current_health;
-        TEMP_Bubbles_Remaining.text = "Bubbles: " + current_bubbles;
-        if (current_health <= 0) {
+        TEMP_Bubble_Health.text = "Health: " + m_current_health;
+        TEMP_Bubbles_Remaining.text = "Bubbles: " + m_current_bubbles;
+        if (m_current_health <= 0) {
             SceneManager.LoadScene("GameOver");
         }
 
