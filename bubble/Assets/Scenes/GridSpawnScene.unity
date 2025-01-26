@@ -246,6 +246,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: bubStrength
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: needleTimer
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: bubMoveSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5572644827788502904, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -288,8 +300,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746003c8074837447bacc9d30be248df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  max_bubbles: 10
+  max_health: 500
   TEMP_Bubble_Health: {fileID: 2082002672}
   TEMP_Bubbles_Remaining: {fileID: 1978085612}
+  regenTimerThreshold: 1
+  regenAmount: 5
+  placableBubbleAmount: 3
+  healthRecoverAmount: 150
 --- !u!4 &892403554
 Transform:
   m_ObjectHideFlags: 0
@@ -715,6 +733,7 @@ MonoBehaviour:
   gridScale: 0
   gridWidth: 15
   gridHeight: 15
+  itemRatioMult: 1
 --- !u!4 &2047867448
 Transform:
   m_ObjectHideFlags: 0

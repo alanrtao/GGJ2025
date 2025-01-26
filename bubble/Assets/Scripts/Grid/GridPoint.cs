@@ -14,7 +14,8 @@ public class GridPoint : MonoBehaviour
         NONE,
         NEEDLE,
         BUBBLE_WAND,
-        BUBBLE_BOTTLE
+        BUBBLE_BOTTLE,
+        SPIKE_BALL
     }
 
     public enum landmarkType {

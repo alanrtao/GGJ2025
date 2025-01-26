@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Utils;
+using Random = UnityEngine.Random;
 
 public class GridGen : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GridGen : MonoBehaviour
     [SerializeField] public float gridScale;
     [SerializeField] public int gridWidth;
     [SerializeField] public int gridHeight;
+    [SerializeField] public int itemRatioMult;
     [SerializeField] public static List<GridPoint> bubbleTiles = new();
     [SerializeField] public static List<GridPoint> allGridPoints = new();
     
@@ -26,8 +28,7 @@ public class GridGen : MonoBehaviour
     {
         bubbleTiles = new List<GridPoint>();
         allGridPoints = new List<GridPoint>();
-        genGrid(gridWidth, gridHeight);
-        //updateVoidTiles();
+        genGrid(gridWidth, gridHeight);    
     }
 
     // Update is called once per frame
@@ -46,6 +47,9 @@ public class GridGen : MonoBehaviour
                 p.y_pos = j;
                 p.item = GridPoint.itemType.NONE;
                 p.landmark = GridPoint.landmarkType.NONE;
+                p.type = GridPoint.tileType.FOG;
+                p.hasItem = false;
+                p.hasLandmark = false;
                 
                 allGridPoints.Add(p);
                 if ((int)(Mathf.Abs(i)) < 2 && (int)(Mathf.Abs(j)) < 2) {
@@ -58,6 +62,54 @@ public class GridGen : MonoBehaviour
         }
         
         BubblePostProcManager.OnGridInitialize(bubbleTiles);
+
+        updateVoidTiles();
+        landmarkGenerator();
+        itemGenerator();
+    }
+
+    void landmarkGenerator() {
+        int successCount = 0;
+        GridPoint[] gridMap = allGridPoints.ToArray();
+        while (successCount < 7) {
+            int index = Random.Range(0,allGridPoints.Count);
+            GridPoint gp = gridMap[index];
+            bool emptyTile = ((gp.hasLandmark == false) && (gp.hasItem == false));
+            bool inStartRange = ((int)(Mathf.Abs(gp.x_pos)) < 4 && (int)(Mathf.Abs(gp.y_pos)) < 4);
+            bool onEdgeTiles = ((gp.x_pos == -gridWidth/2) || (gp.x_pos == Mathf.CeilToInt(gridWidth/2.0f) - 1) || (gp.y_pos == -gridHeight/2) || (gp.y_pos == Mathf.CeilToInt(gridHeight/2.0f) - 1));
+            if (gp.getType() == GridPoint.tileType.FOG && emptyTile && !inStartRange && !onEdgeTiles) {
+                gp.hasLandmark = true;
+                successCount++;
+                gp.landmark = (GridPoint.landmarkType)successCount;
+            }
+        }
+    }
+
+    void itemGenerator() {
+        int itemCount = 0;
+        GridPoint[] gridMap = allGridPoints.ToArray();
+        //2:4:4:1
+        //needle:wand:mine:bottle
+        while (itemCount < 11*itemRatioMult) {
+            int index = Random.Range(0,allGridPoints.Count);
+            GridPoint gp = gridMap[index];
+            bool emptyTile = ((gp.hasLandmark == false) && (gp.hasItem == false));
+            bool inStartRange = ((int)(Mathf.Abs(gp.x_pos)) < 4 && (int)(Mathf.Abs(gp.y_pos)) < 4);
+            bool onEdgeTiles = ((gp.x_pos == -gridWidth/2) || (gp.x_pos == Mathf.CeilToInt(gridWidth/2.0f) - 1) || (gp.y_pos == -gridHeight/2) || (gp.y_pos == Mathf.CeilToInt(gridHeight/2.0f) - 1));
+            if (gp.getType() == GridPoint.tileType.FOG && emptyTile && !inStartRange && !onEdgeTiles) {
+                gp.hasItem = true;
+                if (itemCount < 2*itemRatioMult) {
+                    gp.item = GridPoint.itemType.NEEDLE;
+                } else if (itemCount < 6*itemRatioMult) {
+                    gp.item = GridPoint.itemType.BUBBLE_WAND;
+                } else if (itemCount < 10*itemRatioMult) {
+                    gp.item = GridPoint.itemType.SPIKE_BALL;
+                } else {
+                    gp.item = GridPoint.itemType.BUBBLE_BOTTLE;
+                }
+                itemCount++;
+            }
+        }
     }
 
     public static void updateOnBubblePlaced(int i, int j) {

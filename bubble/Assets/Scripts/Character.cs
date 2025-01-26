@@ -320,6 +320,9 @@ public class Character : TurnObject
             case GridPoint.itemType.BUBBLE_BOTTLE:
                 BubbleManager.addHealth(BubbleManager.Instance.healthRecoverAmount);
                 break;
+            case GridPoint.itemType.SPIKE_BALL:
+                SceneManager.LoadScene("GameOver");
+                break;
             default:
                 break;
         }
