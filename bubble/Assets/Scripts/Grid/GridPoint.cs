@@ -40,6 +40,10 @@ public class GridPoint : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+    }
+
+    public void InitTypeFromCoords()
+    {
         if ((int)(Mathf.Abs(x_pos)) < 2 && (int)(Mathf.Abs(y_pos)) < 2) {
             type = tileType.FLOOR;
         } else {
@@ -56,15 +60,15 @@ public class GridPoint : MonoBehaviour
     void Update()
     {
         if (type == tileType.ABYSS) {
-            this.GetComponent<SpriteRenderer>().color = Color.white;
+            this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         }
         if (type == tileType.FLOOR && explored == false) {
-            this.GetComponent<SpriteRenderer>().color = Color.green;
+            this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);;
         } else if (type == tileType.FLOOR) {
-            this.GetComponent<SpriteRenderer>().color = Color.yellow;
+            this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         }
         if (type == tileType.FOG) {
-            this.GetComponent<SpriteRenderer>().color = Color.gray;
+            this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         }
     }
 
