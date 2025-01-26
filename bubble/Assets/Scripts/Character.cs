@@ -309,15 +309,19 @@ public class Character : TurnObject
         if (x_diff == 0 && y_diff == 0) {
             currentTrigger = "idle_trigger";
             // animator.SetTrigger("idle_trigger"); //No diagonal animation, so I'll prioritize using up/forward anims for that
-        } else if (x_diff > 0 && y_diff == 0) {
-            currentTrigger = "move_right";
-            // animator.SetTrigger("move_right");
-        } else if (x_diff < 0 && y_diff == 0) {
+        } 
+        if (x_diff > 0) {
             currentTrigger = "move_left";
-        } else if (bub_y_pos > p.y_pos) {
+            // animator.SetTrigger("move_right");
+        } 
+        if (x_diff < 0) {
+            currentTrigger = "move_right";
+        } 
+        if (bub_y_pos < p.y_pos) {
             currentTrigger = "move_up";
             // animator.SetTrigger("move_up");
-        } else if (p.y_pos < bub_y_pos) {
+        } 
+        if (p.y_pos < bub_y_pos) {
             currentTrigger = "move_forward";
             // animator.SetTrigger("move_forward");
         }
