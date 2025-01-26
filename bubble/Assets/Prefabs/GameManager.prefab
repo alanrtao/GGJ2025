@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5585649890875257221}
   - component: {fileID: 5963880351359943352}
   - component: {fileID: 5275274629448247937}
+  - component: {fileID: 4852975464009283038}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -61,7 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b45d1ca15a2651418b09d6935875b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
   camSpeed: 5
   camAccel: 1.5
   camDecayPersistence: 0.5
@@ -97,3 +97,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: a634cb2d9a5445042bda9c9eda09b9a2, type: 2}
+--- !u!114 &4852975464009283038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329507143126196066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746003c8074837447bacc9d30be248df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_bubbles: 50
+  max_health: 500
+  TEMP_Bubble_Health: {fileID: 0}
+  TEMP_Bubbles_Remaining: {fileID: 0}
+  regenTimerThreshold: 1
+  regenAmount: 5
+  placableBubbleAmount: 3
+  healthRecoverAmount: 150
