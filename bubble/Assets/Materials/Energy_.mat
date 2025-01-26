@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Energy
-  m_Shader: {fileID: -6465566751694194690, guid: 730437ff575b6cb498fe4a027b191e9c, type: 3}
+  m_Name: Energy_
+  m_Shader: {fileID: -6465566751694194690, guid: 89d3160985e3a7040b8e1bb46c7fbcca, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -41,11 +41,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _hp01: 0.14
+    - _hp01: 0.342
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &1600710440957354538
+--- !u!114 &3713433777207435525
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
