@@ -72,8 +72,6 @@ public class Character : TurnObject
     }
 
     #region STATES
-    private int m_bubTakeAction = 0;
-
     public enum State
     {
         Idle,
