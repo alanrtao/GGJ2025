@@ -49,7 +49,7 @@ Material:
     - _BubbleOuterStrength: 0.82
     - _BubbleSize: 11.91
     - _BubbleSizeInner: 3.28
-    - _BubbleSizeOuter: 0.73
+    - _BubbleSizeOuter: 0.8
     - _GridSize: 1
     m_Colors: []
   m_BuildTextureStacks: []

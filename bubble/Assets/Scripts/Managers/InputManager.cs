@@ -5,8 +5,7 @@ public class InputManager : MonoBehaviour
 {
     private bool m_paused;
     
-    [SerializeField]
-    private GameObject pauseMenu;
+    private static GameObject pauseMenu => GameObject.Find("Pause");
 
     private static InputManager Instance;
 
@@ -99,7 +98,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void TogglePause()
+    private void TogglePause()
     {
         m_paused = !m_paused;
         Time.timeScale = m_paused ? 0 : 1;
@@ -107,7 +106,7 @@ public class InputManager : MonoBehaviour
         AudioManager.SetPaused(m_paused);
     }
 
-    Vector3 LerpSmooth(Vector3 a, Vector3 b, float dt, float h)
+    private static Vector3 LerpSmooth(Vector3 a, Vector3 b, float dt, float h)
     {
         // https://x.com/FreyaHolmer/status/1757836988495847568?lang=en
         return b + (a - b) * Mathf.Pow(2, -dt / h);
