@@ -247,6 +247,7 @@ public class Character : TurnObject
     # region appearance
     IEnumerator BumpWall(GridPoint wall)
     {
+        AudioManager.PlaySound(AudioManager.Asset.HurtBubble);
         var start = transform.position;
         for (float i = 0; i < 0.2f; i+=Time.deltaTime)
         {
@@ -403,6 +404,7 @@ public class Character : TurnObject
         bub_y_pos = p.y_pos;
         p.explored = true;
         
+        AudioManager.PlaySound(AudioManager.Asset.Footsteps);
     }
 
     GridPoint.itemType TakeItem(GridPoint p)
