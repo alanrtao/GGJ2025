@@ -9,10 +9,10 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [SerializeField]
-    private EventReference title;
+
+    [SerializeField] private EventReference title;
     private EventInstance m_Title;
-    private EventReference inGame;
+    [SerializeField] private EventReference inGame;
     private EventInstance m_InGame;
 
     private void Awake()

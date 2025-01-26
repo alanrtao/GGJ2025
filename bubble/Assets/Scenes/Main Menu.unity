@@ -313,8 +313,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bc7d4943cffdb364595cb7247654887f, type: 2}
-  m_sharedMaterial: {fileID: 4619686369385241188, guid: bc7d4943cffdb364595cb7247654887f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1316,13 +1316,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97cc68393db56ba4db8be1b027a127d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  song:
+  title:
     Guid:
       Data1: 191877372
       Data2: 1201452947
       Data3: 1847671729
       Data4: -1853795327
     Path: event:/Music/Main Menu
+  inGame:
+    Guid:
+      Data1: 1775898872
+      Data2: 1117447640
+      Data3: -1270894948
+      Data4: 953052762
+    Path: event:/Music/Game
 --- !u!1 &1823432692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,8 +1391,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bc7d4943cffdb364595cb7247654887f, type: 2}
-  m_sharedMaterial: {fileID: 4619686369385241188, guid: bc7d4943cffdb364595cb7247654887f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1831,8 +1838,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bc7d4943cffdb364595cb7247654887f, type: 2}
-  m_sharedMaterial: {fileID: 4619686369385241188, guid: bc7d4943cffdb364595cb7247654887f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

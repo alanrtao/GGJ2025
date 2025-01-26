@@ -8,7 +8,8 @@ public class MainMenu : MonoBehaviour
     
     public void StartGame()
     {
-        SceneManager.LoadScene(1);  //PLZ MAKE SURE THIS IS SET RIGHT IN THE BUILD PROFILE SETTINGS AAAAAAAA :3
+        AudioManager.StartGameMusic();
+        SceneManager.LoadScene(1);  //PLZ MAKE SURE THIS IS SET RIGHT IN THE BUILD PROFILE SETTINGS OR ELSE I CRI AAAAAAAA
     }
 
     public void Credits()
