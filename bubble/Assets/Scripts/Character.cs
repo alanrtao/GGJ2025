@@ -37,9 +37,6 @@ public class Character : TurnObject
         currentTrigger = " ";
         bub_x_pos = 0;
         bub_y_pos = 0;
-        bubMoveSpeed = 2;
-        bubStrength = 20;
-        needleTimer = 180;
         fulfilledDesires = new bool[7] {false, false, false, false, false, false, false};
         transform.position = new Vector3(bub_x_pos, bub_y_pos, 0);
         ScheduleDecideNewState(1, State.Idle);

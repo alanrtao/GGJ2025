@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: regenTimerThreshold
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: placableBubbleAmount
