@@ -93,6 +93,7 @@ public class BubbleManager : MonoBehaviour
         Instance.current_health -= deduction;
         if (Instance.current_health < 0) {
             Instance.current_health = 0;
+            AudioManager.PlaySound(AudioManager.Asset.BigBubblePop);
             SceneManager.LoadScene("GameOver");
         }
         Instance.bubbleMaterial.SetColor(k_Color, Instance.bubbleDefaultColor);
