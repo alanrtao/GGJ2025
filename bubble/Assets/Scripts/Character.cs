@@ -6,6 +6,7 @@ using Utils;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 
+
 public class Character : TurnObject
 {
     [SerializeField] private int bub_x_pos;
@@ -16,10 +17,13 @@ public class Character : TurnObject
     [SerializeField] private float needleTimer;
     bool hasNeedle;
     bool[] fulfilledDesires;
-
+    Animator animator;
+    String currentTrigger;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentTrigger = " ";
         bub_x_pos = 0;
         bub_y_pos = 0;
         bubMoveSpeed = 2;
@@ -28,6 +32,7 @@ public class Character : TurnObject
         fulfilledDesires = new bool[7] {false, false, false, false, false, false, false};
         transform.position = new Vector3(bub_x_pos, bub_y_pos, 0);
         ScheduleDecideNewState(1, State.Idle);
+        animator = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -296,9 +301,33 @@ public class Character : TurnObject
         PrintPath(path);
 
         var p = path.First();
+        int x_diff = p.x_pos - bub_x_pos;
+        int y_diff = p.y_pos - bub_y_pos;
+        if (!currentTrigger.Equals(" ")) {
+            animator.ResetTrigger(currentTrigger);
+        }
+        if (x_diff == 0 && y_diff == 0) {
+            currentTrigger = "idle_trigger";
+            // animator.SetTrigger("idle_trigger"); //No diagonal animation, so I'll prioritize using up/forward anims for that
+        } else if (x_diff > 0 && y_diff == 0) {
+            currentTrigger = "move_right";
+            // animator.SetTrigger("move_right");
+        } else if (x_diff < 0 && y_diff == 0) {
+            currentTrigger = "idle_left";
+            // animator.SetTrigger("move_left");
+        } else if (y_diff > 0) {
+            currentTrigger = "move_up";
+            // animator.SetTrigger("move_up");
+        } else if (y_diff < 0) {
+            currentTrigger = "move_forward";
+            // animator.SetTrigger("move_forward");
+        }
+        
+        animator.SetTrigger(currentTrigger);
         bub_x_pos = p.x_pos;
         bub_y_pos = p.y_pos;
         p.explored = true;
+        
     }
 
     GridPoint.itemType TakeItem(GridPoint p)
