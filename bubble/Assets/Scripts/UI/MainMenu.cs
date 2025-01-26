@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);  //PLZ MAKE SURE THIS IS SET RIGHT IN THE BUILD PROFILE SETTINGS AAAAAAAA :3
     }
 
     public void Credits()
