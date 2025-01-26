@@ -246,6 +246,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: bubStrength
+      value: 999
+      objectReference: {fileID: 0}
     - target: {fileID: 7521988073951910940, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
       propertyPath: m_Name
       value: PennyTest
