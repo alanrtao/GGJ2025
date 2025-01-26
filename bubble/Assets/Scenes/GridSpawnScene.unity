@@ -609,7 +609,7 @@ MonoBehaviour:
   gridPoint: {fileID: 5611577588283821372, guid: 5373a4364567dbe48b2dd3ae72728a43, type: 3}
   gridScale: 0
   gridWidth: 15
-  gridHeight: 15
+  gridHeight: 9
   itemRatioMult: 1
   landmarkSprites:
   - {fileID: 3582216034001131851, guid: be55331ea71157f499af2587f05e7023, type: 3}

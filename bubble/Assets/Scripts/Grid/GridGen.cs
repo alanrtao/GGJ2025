@@ -103,9 +103,9 @@ public class GridGen : MonoBehaviour
     void itemGenerator() {
         int itemCount = 0;
         GridPoint[] gridMap = allGridPoints.ToArray();
-        //2:4:4:1
+        //2:1:2:1
         //needle:wand:mine:bottle
-        while (itemCount < 11*itemRatioMult) {
+        while (itemCount < 6*itemRatioMult) {
             int index = Random.Range(0,allGridPoints.Count);
             GridPoint gp = gridMap[index];
             bool emptyTile = ((gp.hasLandmark == false) && (gp.hasItem == false));
@@ -115,9 +115,9 @@ public class GridGen : MonoBehaviour
                 gp.hasItem = true;
                 if (itemCount < 2*itemRatioMult) {
                     gp.item = GridPoint.itemType.NEEDLE;
-                } else if (itemCount < 6*itemRatioMult) {
+                } else if (itemCount < 3*itemRatioMult) {
                     gp.item = GridPoint.itemType.BUBBLE_WAND;
-                } else if (itemCount < 10*itemRatioMult) {
+                } else if (itemCount < 5*itemRatioMult) {
                     gp.item = GridPoint.itemType.SPIKE_BALL;
                 } else {
                     gp.item = GridPoint.itemType.BUBBLE_BOTTLE;
