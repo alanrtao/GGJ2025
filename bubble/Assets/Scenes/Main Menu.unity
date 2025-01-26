@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29, y: -88.223}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 54.2, y: -130.2}
+  m_SizeDelta: {x: 171.1, y: 103.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &72802177
 MonoBehaviour:
@@ -1187,7 +1187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -68.1, y: -5.3}
+  m_AnchoredPosition: {x: -19.6, y: -5.3}
   m_SizeDelta: {x: 160, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1305336653
@@ -1448,10 +1448,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<B><I>Global Game Jam 2025</I></B>\nTeam: Logan Bowers, Yoon Lee, Elenor
-    Mather, Brett Steele, Alan Tao\nAudio Engine: FMOD Studio by Firelight Technologies
-    Pty Ltd.\n \nFreesound.org Attributions:\nCalm Emtim Bell music.mp3 by ZHR\xD8
-    -- https://freesound.org/s/614096/ -- License: Attribution 4.0"
+  m_text: '<B><I>Global Game Jam 2025</I></B>
+
+    Team: Logan Bowers, Yoon Lee,
+    Elenor Mather, Brett Steele, Alan Tao, Thomas Vu
+
+    Audio Engine: FMOD Studio
+    by Firelight Technologies Pty Ltd.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc7d4943cffdb364595cb7247654887f, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2007,8 +2010,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 21, y: -47}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 125.9, y: -28.4}
+  m_SizeDelta: {x: 160, y: 115.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1859316415
 MonoBehaviour:
@@ -2212,8 +2215,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21.6, y: -86.2}
-  m_SizeDelta: {x: 76.1706, y: 34.0469}
+  m_AnchoredPosition: {x: 194.41, y: -139.7}
+  m_SizeDelta: {x: 122.1, y: 105.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2010899932
 MonoBehaviour:
