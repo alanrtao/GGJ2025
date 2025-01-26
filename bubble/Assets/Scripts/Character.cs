@@ -15,7 +15,7 @@ public class Character : TurnObject
     [SerializeField] private int bub_y_pos;
     [SerializeField] private int bubMoveSpeed;
     [SerializeField] private int bubStrength;
-    GridPoint.landmarkType bubDesire;
+    public GridPoint.landmarkType bubDesire;
     [SerializeField] private float needleTimer;
     bool hasNeedle;
     bool[] fulfilledDesires;
@@ -27,6 +27,7 @@ public class Character : TurnObject
 
     [SerializeField] private RawImage indicatorBg;
     [SerializeField] private RawImage indicatorFg;
+    [SerializeField] public Texture[] indicatorDesires = new Texture[7];
     [SerializeField] private TMPro.TextMeshProUGUI indicatorTxt;
 
 
@@ -292,6 +293,7 @@ public class Character : TurnObject
             case State.Landmark:
                 indicatorTxt.text = "";
                 indicatorFg.enabled = true;
+                indicatorFg.texture = indicatorDesires[(int)bubDesire];
                 break;
             case State.Escape:
                 indicatorTxt.text = ":(";

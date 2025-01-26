@@ -14,6 +14,8 @@ public class GridGen : MonoBehaviour
     [SerializeField] public int itemRatioMult;
     [SerializeField] public static List<GridPoint> bubbleTiles = new();
     [SerializeField] public static List<GridPoint> allGridPoints = new();
+    [SerializeField] public Sprite[] landmarkSprites = new Sprite[7];
+    [SerializeField] public Sprite[] itemSprites = new Sprite[4];
     
     
     public static GridGen Instance;
@@ -34,7 +36,7 @@ public class GridGen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        updateVoidTiles();
+        
     }
 
     void genGrid(int width, int height) {
@@ -62,7 +64,7 @@ public class GridGen : MonoBehaviour
             }
         }
         
-        BubblePostProcManager.OnGridInitialize(bubbleTiles);
+        BubblePostProcManager.OnGridInitialize();
 
         updateVoidTiles();
         landmarkGenerator();
