@@ -5,6 +5,7 @@ using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Character : TurnObject
 {
@@ -16,6 +17,9 @@ public class Character : TurnObject
     [SerializeField] private float needleTimer;
     bool hasNeedle;
     bool[] fulfilledDesires;
+
+    [SerializeField] private Image indicatorBg;
+    [SerializeField] private Image indicatorFg;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
