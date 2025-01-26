@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BubblePostProcManager : MonoBehaviour
@@ -25,7 +26,7 @@ public class BubblePostProcManager : MonoBehaviour
 
     public static void OnGridUpdate(IEnumerable<GridPoint> pts)
     {
-        Instance.UpdateGrid(pts);
+        Instance?.UpdateGrid(pts);
     }
     
     void UpdateGrid(IEnumerable<GridPoint> pts)

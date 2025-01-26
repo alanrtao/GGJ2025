@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class Character : TurnObject
 {
@@ -343,7 +344,7 @@ public class Character : TurnObject
             allFulfilled = allFulfilled && fulfilledDesires[i];
         }
         if (allFulfilled) {
-            //WIN CODE GOES HERE
+            SceneManager.LoadScene("YouWin");
         }
 
         int pickDesire = Random.Range(0,7);

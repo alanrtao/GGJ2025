@@ -1,6 +1,7 @@
 using System;
 using FMOD.Studio;
 using FMODUnity;
+using Unity.Properties;
 using UnityEngine;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
@@ -8,27 +9,39 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [SerializeField]
-    private EventReference song;
-    private EventInstance m_song;
-    
+
+    [SerializeField] private EventReference title;
+    private EventInstance m_Title;
+    [SerializeField] private EventReference inGame;
+    private EventInstance m_InGame;
+
     private void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(Instance);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        m_song = FMODUnity.RuntimeManager.CreateInstance(song);
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(m_song, Camera.main!.gameObject); // lol
-        m_song.start();
+        m_Title = FMODUnity.RuntimeManager.CreateInstance(title);
+        m_InGame = FMODUnity.RuntimeManager.CreateInstance(inGame);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(m_Title, Camera.main!.gameObject); // lol. wtf I'm going to cry :sob:
+        m_Title.start();
     }
 
     private void OnDestroy()
     {
-        m_song.stop(STOP_MODE.ALLOWFADEOUT);
-        m_song.release();
+        m_Title.stop(STOP_MODE.ALLOWFADEOUT);
+        m_Title.release();
+    }
+
+    public static void StartGameMusic()
+    {
+        Instance.m_Title.stop(STOP_MODE.ALLOWFADEOUT);
+        Instance.m_Title.release();
+
+        Instance.m_InGame.start();
     }
 
     public static void SetPaused(bool paused)
