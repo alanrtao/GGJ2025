@@ -73,8 +73,7 @@ public class GridGen : MonoBehaviour
         
         p.changeType(GridPoint.tileType.FLOOR);
         bubbleTiles.Add(p);
-        var newlyPlaced = new HashSet<GridPoint>();
-        newlyPlaced.Add(p);
+        var newlyPlaced = new HashSet<GridPoint> { p };
 
         int i_diff = -1;
         int j_diff = 0;
@@ -125,15 +124,33 @@ public class GridGen : MonoBehaviour
 
     public static GridPoint Find(int i, int j) => GameObject.Find($"GridPoint:{i},{j}")?.GetComponent<GridPoint>();
     public static bool IsBubble(GridPoint p) => p.type == GridPoint.tileType.FLOOR;
+
+    public static bool IsEdgeBubble(GridPoint p) =>
+        p.type == GridPoint.tileType.FLOOR && GetNeighbors(p, Not(IsBubble)).Count > 0;
+
+    public static Func<GridPoint, bool> IsBubbleWithLandmark(GridPoint.landmarkType type) => (p) =>
+        p.type == GridPoint.tileType.FLOOR && p.hasLandmark && p.landmark == type;
+    
+    public static bool IsBubbleWithAnyItem(GridPoint p) =>
+        p.type == GridPoint.tileType.FLOOR && p.hasLandmark;
+
+    public static bool IsUnexploredBubble(GridPoint p) =>
+        p.type == GridPoint.tileType.FLOOR && !p.explored;
+    
     public static Func<GridPoint, bool> Not(Func<GridPoint, bool> pred) => (p) => !pred(p);
 
-    public static HashSet<GridPoint> GetNeighbors(GridPoint p, Func<GridPoint, bool> predicate)
+    public static HashSet<GridPoint> GetNeighbors(GridPoint p, Func<GridPoint, bool> predicate, bool allowDiagonals = true)
     {
-        var offsets = new []
+        var offsets = allowDiagonals ? new []
         {
             (-1, -1), (-1, 0), (-1, 1),
             (0, -1), (0, 1),
             (1, -1), (1, 0), (1, 1)
+        } : new[]
+        {
+            (-1, 0),
+            (0, -1), (0, 1),
+            (1, 0)
         };
 
         var neighbors = offsets.Select(offset =>

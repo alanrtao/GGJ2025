@@ -8,9 +8,7 @@ public class TurnManager : MonoBehaviour
 {
 
     public static TurnManager Instance;
-
-    [SerializeField]
-    private List<TurnObject> turnObjects;
+    private List<TurnObject> m_turnObjects;
     
     private bool gameFinished = false;
     
@@ -25,6 +23,7 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
+        m_turnObjects = FindObjectsByType<TurnObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).ToList();
         StartCoroutine(Turn());
     }
 
@@ -39,10 +38,10 @@ public class TurnManager : MonoBehaviour
         {
             TurnContext ctx = CurrentCtx;
 
-            var actions = turnObjects.Select(to 
+            var actions = m_turnObjects.Select(to 
                 => to.Schedule.Count == 0 ? (to, null as ITurnAction) : (to, to.Schedule.Dequeue()));
 
-            turnObjects = actions.Where(to_act =>
+            m_turnObjects = actions.Where(to_act =>
             {
                 var (to, act) = to_act;
                 var res = act?.DoAction(ctx, to) ?? to.IdleTurn(ctx);
