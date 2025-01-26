@@ -22,6 +22,11 @@ public class MainMenu : MonoBehaviour
         credits.SetActive(false);
     }
 
+    public void GoToTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
     public void Exit()
     {
         Application.Quit();
