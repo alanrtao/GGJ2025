@@ -38,9 +38,14 @@ namespace Utils
                 );
 
             dist[start] = (null, 0);
-            
             var todo = new PriorityQueue<GridPoint, int>();
-            todo.EnqueueRange(GridGen.GetNeighbors(start, GridGen.IsBubble).Select(p => (p, 1)));
+
+            foreach (var p in GridGen.GetNeighbors(start, GridGen.IsBubble))
+            {
+                dist[p] = (start, 1);
+                todo.Enqueue(p, 1);
+            }
+            
             while (todo.TryDequeue(out var p, out var pDist))
             {
                 foreach (var q in GridGen.GetNeighbors(start, GridGen.IsBubble))

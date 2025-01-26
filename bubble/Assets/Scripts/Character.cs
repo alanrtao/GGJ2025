@@ -57,11 +57,8 @@ public class Character : TurnObject
 
     TurnResult ScheduleDecideNewState(int interval, State prev)
     {
-        ScheduleAfterEndOfQueue(interval, new TurnActionLambda((ctx, to) =>
-        {
-            IndicateState(State.Idle);
-            return BubStateDecideForNextTurn(ctx, to, prev);
-        }), MultipleActionResolution.AddAsFirstInTurn);
+        ScheduleAfterEndOfQueue(interval, new TurnActionLambda((ctx, to)
+            => BubStateDecideForNextTurn(ctx, to, prev)), MultipleActionResolution.AddAsFirstInTurn);
         return TurnResult.Continue;
     }
 
