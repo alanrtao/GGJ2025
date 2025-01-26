@@ -111,10 +111,10 @@ namespace Utils
                     visited.Add(q);
                     
                     // if enclosure touches the border directly, do not enclose it
-                    foreach (var r in GridGen.GetNeighbors(q, GridGen.IsMapBorder, allowDiagonals: false))
-                    {
-                        goto skipCurrentEnclosure;
-                    }   
+                    // foreach (var r in GridGen.GetNeighbors(q, GridGen.IsMapBorder, allowDiagonals: false))
+                    // {
+                    //     goto skipCurrentEnclosure;
+                    // }   
                     
                     foreach (var r in GridGen.GetNeighbors(q, GridGen.IsBubble))
                     {

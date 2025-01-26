@@ -150,7 +150,7 @@ public class GridGen : MonoBehaviour
     // GameObject.Find($"GridPoint:{i},{j}")?.GetComponent<GridPoint>());
     
     public static bool IsBubble(GridPoint p) => p.type == GridPoint.tileType.FLOOR;
-    public static bool IsMapBorder(GridPoint p) => GetNeighbors(p, _=>true).Count != 8;
+    public static bool IsMapBorder(GridPoint p) => p.type != GridPoint.tileType.FLOOR && GetNeighbors(p, _=>true).Count != 8;
 
     public static bool IsEdgeBubble(GridPoint p) =>
         p.type == GridPoint.tileType.FLOOR && GetNeighbors(p, Not(IsBubble)).Count > 0;
