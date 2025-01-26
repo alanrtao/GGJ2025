@@ -12,7 +12,8 @@ public class GridGen : MonoBehaviour
     [SerializeField] public int gridHeight;
     [SerializeField] public static List<GridPoint> bubbleTiles = new();
     [SerializeField] public static List<GridPoint> allGridPoints = new();
-    
+
+    private Dictionary<(int x, int y), GridPoint> m_map;
     
     public static GridGen Instance;
 
@@ -36,7 +37,9 @@ public class GridGen : MonoBehaviour
         updateVoidTiles();
     }
 
-    void genGrid(int width, int height) {
+    void genGrid(int width, int height)
+    {
+        m_map = new();
         for (int i = -width/2; i < Mathf.CeilToInt(width/2.0f); i++) {
             for (int j = -height/2; j < Mathf.CeilToInt(height/2.0f); j++) {
                 GameObject ref1 = Instantiate(gridPoint, new Vector3(i, j, 0), Quaternion.identity);
@@ -55,6 +58,8 @@ public class GridGen : MonoBehaviour
                 } else {
                     p.explored = false;
                 }
+
+                m_map.Add((i, j), p);
             }
         }
         
@@ -137,8 +142,15 @@ public class GridGen : MonoBehaviour
         }
     }
 
-    public static GridPoint Find(int i, int j) => GameObject.Find($"GridPoint:{i},{j}")?.GetComponent<GridPoint>();
+    public static GridPoint Find(int i, int j)
+    {
+        return Instance.m_map.GetValueOrDefault((i, j));
+    }
+
+    // GameObject.Find($"GridPoint:{i},{j}")?.GetComponent<GridPoint>());
+    
     public static bool IsBubble(GridPoint p) => p.type == GridPoint.tileType.FLOOR;
+    public static bool IsMapBorder(GridPoint p) => GetNeighbors(p, _=>true).Count != 8;
 
     public static bool IsEdgeBubble(GridPoint p) =>
         p.type == GridPoint.tileType.FLOOR && GetNeighbors(p, Not(IsBubble)).Count > 0;

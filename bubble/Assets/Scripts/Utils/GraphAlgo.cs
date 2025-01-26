@@ -109,6 +109,13 @@ namespace Utils
                 foreach (var q in enc)
                 {
                     visited.Add(q);
+                    
+                    // if enclosure touches the border directly, do not enclose it
+                    foreach (var r in GridGen.GetNeighbors(q, GridGen.IsMapBorder, allowDiagonals: false))
+                    {
+                        goto skipCurrentEnclosure;
+                    }   
+                    
                     foreach (var r in GridGen.GetNeighbors(q, GridGen.IsBubble))
                     {
                         bubbleBorder.Add(r);
@@ -127,6 +134,9 @@ namespace Utils
                         // UnityEngine.Debug.Log($"Enclosure {enc.Count} does not border newly placed points");
                     }
                 }
+                
+                skipCurrentEnclosure:
+                continue;
             }
 
             if (enclosures.Count() <= 1)

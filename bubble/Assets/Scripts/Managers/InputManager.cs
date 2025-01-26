@@ -5,7 +5,7 @@ public class InputManager : MonoBehaviour
 {
     private bool m_paused;
     
-    private static GameObject pauseMenu => GameObject.Find("Pause");
+    public static GameObject PauseMenu => FindFirstObjectByType<PauseMenu>(FindObjectsInactive.Include)?.gameObject;
 
     private static InputManager Instance;
 
@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        if (pauseMenu != null) pauseMenu.SetActive(m_paused);
+        if (PauseMenu != null) PauseMenu.SetActive(m_paused);
         AudioManager.SetPaused(m_paused);
     }
 
@@ -102,7 +102,7 @@ public class InputManager : MonoBehaviour
     {
         m_paused = !m_paused;
         Time.timeScale = m_paused ? 0 : 1;
-        if (pauseMenu != null) pauseMenu.SetActive(m_paused);
+        if (PauseMenu != null) PauseMenu.SetActive(m_paused);
         AudioManager.SetPaused(m_paused);
     }
 
