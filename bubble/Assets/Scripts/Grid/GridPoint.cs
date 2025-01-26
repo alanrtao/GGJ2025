@@ -83,4 +83,9 @@ public class GridPoint : MonoBehaviour
              GridGen.updateOnBubblePlaced(x_pos, y_pos);
         }
     }
+
+    public override string ToString()
+    {
+        return $"({x_pos}, {y_pos}): {type}";
+    }
 }
