@@ -242,7 +242,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -524,15 +524,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1046348867342972204, guid: 5cf421f0db90ec049a6c64532c47b8f5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 976.1704
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1046348867342972204, guid: 5cf421f0db90ec049a6c64532c47b8f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 500.02948
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1046348867342972204, guid: 5cf421f0db90ec049a6c64532c47b8f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.1490526
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1046348867342972204, guid: 5cf421f0db90ec049a6c64532c47b8f5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -586,36 +586,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5585649890875257221, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
-      propertyPath: camAccel
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5585649890875257221, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
-      propertyPath: camSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5585649890875257221, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1315150810}
-    - target: {fileID: 5585649890875257221, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
-      propertyPath: camDecayPersistence
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6329507143126196066, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
     - target: {fileID: 7807998008988081945, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 976.1704
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7807998008988081945, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 500.02948
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7807998008988081945, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.1490526
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7807998008988081945, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: m_LocalRotation.w
