@@ -620,10 +620,10 @@ MonoBehaviour:
   - {fileID: -4863135007369911072, guid: 4a97ebea93160674689968dd1c3f1efa, type: 3}
   - {fileID: -8259576210919821962, guid: e43c30281ececa84ab5dddcdd5de3964, type: 3}
   itemSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 532248328190118374, guid: fb485b8624aaaed4eafa937f5f3709d9, type: 3}
+  - {fileID: 3034212570109217136, guid: 9651ea7face5099438de7848bf70736b, type: 3}
+  - {fileID: -8691168757624660172, guid: c07af2126fb15fd4bb864b394f7214cc, type: 3}
+  - {fileID: 8827621183840095891, guid: dd3ac9dc2f390d8439502d843a9abd85, type: 3}
 --- !u!4 &2047867448
 Transform:
   m_ObjectHideFlags: 0
