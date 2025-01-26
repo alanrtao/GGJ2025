@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8389924514804912260}
   - component: {fileID: 5585649890875257221}
   - component: {fileID: 5963880351359943352}
-  - component: {fileID: 5275274629448247937}
   - component: {fileID: 4852975464009283038}
   m_Layer: 0
   m_Name: GameManager
@@ -48,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8822e0eb8a81e84ca393d56b4862930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnObjects: []
   turnIntervalSeconds: 3
 --- !u!114 &5585649890875257221
 MonoBehaviour:
@@ -77,26 +75,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97cc68393db56ba4db8be1b027a127d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  song:
+  title:
     Guid:
-      Data1: 1775898872
-      Data2: 1117447640
-      Data3: -1270894948
-      Data4: 953052762
-    Path: event:/Music/Game
---- !u!114 &5275274629448247937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6329507143126196066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f196916acbc4fff41853a47b91a14484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: a634cb2d9a5445042bda9c9eda09b9a2, type: 2}
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  inGame:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &4852975464009283038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,3 +109,6 @@ MonoBehaviour:
   regenAmount: 5
   placableBubbleAmount: 3
   healthRecoverAmount: 150
+  hpMaterial: {fileID: 2100000, guid: cd32f9acb3117c74191bf0940421eebd, type: 2}
+  energyMaterial: {fileID: 2100000, guid: d78b41fc86a281844bfa0262576c2408, type: 2}
+  bubbleMaterial: {fileID: 2100000, guid: a634cb2d9a5445042bda9c9eda09b9a2, type: 2}

@@ -46,6 +46,7 @@ public class GridGen : MonoBehaviour
                 p.y_pos = j;
                 p.item = GridPoint.itemType.NONE;
                 p.landmark = GridPoint.landmarkType.NONE;
+                p.InitTypeFromCoords();
                 
                 allGridPoints.Add(p);
                 if ((int)(Mathf.Abs(i)) < 2 && (int)(Mathf.Abs(j)) < 2) {
@@ -57,7 +58,7 @@ public class GridGen : MonoBehaviour
             }
         }
         
-        BubblePostProcManager.OnGridInitialize(bubbleTiles);
+        BubblePostProcManager.OnGridInitialize();
     }
 
     public static void updateOnBubblePlaced(int i, int j) {
@@ -104,10 +105,12 @@ public class GridGen : MonoBehaviour
         }
         
         updateVoidTiles();
-        BubblePostProcManager.OnGridUpdate(bubbleTiles.Select(bt => bt.GetComponent<GridPoint>()));
+        BubblePostProcManager.OnGridUpdate();
     }
 
-    static void updateVoidTiles() {
+    static void updateVoidTiles()
+    {
+        bool actuallyChangedType = false;
         foreach (var tile in bubbleTiles) {
             int tileX = tile.x_pos;
             int tileY = tile.y_pos;
@@ -115,10 +118,19 @@ public class GridGen : MonoBehaviour
                 for (int j = -2; j < 3; j++) {
                     var p = Find(tileX + i, tileY + j);
                     if (p != null && p.getType() == GridPoint.tileType.FOG) {
-                        p.changeType(GridPoint.tileType.ABYSS);
+                        if (p.type != GridPoint.tileType.ABYSS)
+                        {
+                            actuallyChangedType = true;
+                            p.changeType(GridPoint.tileType.ABYSS);   
+                        }
                     }
                 }
             }
+        }
+
+        if (actuallyChangedType)
+        {
+            BubblePostProcManager.OnGridUpdate();
         }
     }
 

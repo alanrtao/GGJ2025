@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bubble
-  m_Shader: {fileID: -6465566751694194690, guid: 36db0987e9922374aab32f9a19116633, type: 3}
+  m_Name: Energy
+  m_Shader: {fileID: -6465566751694194690, guid: 730437ff575b6cb498fe4a027b191e9c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,10 +23,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Grid:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -45,18 +41,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BubbleFillStrength: 0.15
-    - _BubbleInnerStrength: 0.72
-    - _BubbleOuterStrength: 0.82
-    - _BubbleSize: 11.91
-    - _BubbleSizeInner: 3.28
-    - _BubbleSizeOuter: 0.8
-    - _GridSize: 1
-    m_Colors:
-    - _Color: {r: 0.75557816, g: 0.9891234, b: 0.8987184, a: 0.075023696}
+    - _hp01: 0.8
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &7619173717082858751
+--- !u!114 &1600710440957354538
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
