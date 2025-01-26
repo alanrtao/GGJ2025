@@ -75,6 +75,8 @@ public class GridGen : MonoBehaviour
         p.changeType(GridPoint.tileType.FLOOR);
         bubbleTiles.Add(p);
         var newlyPlaced = new HashSet<GridPoint> { p };
+        
+        AudioManager.PlaySound(AudioManager.Asset.BubblePlacement);
 
         int i_diff = -1;
         int j_diff = 0;
@@ -97,6 +99,7 @@ public class GridGen : MonoBehaviour
         // check for enclosure
         if (GraphAlgo.TryCreateBubble(newlyPlaced, out var newBubble))
         {
+            AudioManager.PlaySound(AudioManager.Asset.BubbleLoopTemplate);
             foreach (var q in newBubble)
             {
                 q.changeType(GridPoint.tileType.FLOOR);
