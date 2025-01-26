@@ -246,6 +246,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: bubStrength
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5572644827788502904, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -508,6 +512,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1296540492116652209, guid: 9e343e58544d61243ac89c634de457bd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 143.60004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296540492116652209, guid: 9e343e58544d61243ac89c634de457bd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 141.20001
+      objectReference: {fileID: 0}
     - target: {fileID: 5386217042814147496, guid: 9e343e58544d61243ac89c634de457bd, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -551,6 +563,14 @@ PrefabInstance:
     - target: {fileID: 6344425115963785481, guid: 9e343e58544d61243ac89c634de457bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588474515811782635, guid: 9e343e58544d61243ac89c634de457bd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 143.60004
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588474515811782635, guid: 9e343e58544d61243ac89c634de457bd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 141.20001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -10,6 +12,17 @@ public class BubbleManager : MonoBehaviour
     private int m_current_bubbles;
     public static int CurrentBubbles => Instance.m_current_bubbles;
     [SerializeField] public int max_bubbles;
+
+    private int current_health
+    {
+        get => m_current_health;
+        set
+        {
+            m_current_health = value;
+            hpMaterial.SetFloat(Hp01, ((float) value) / max_health);
+        }
+    }
+    
     private int m_current_health;
     [SerializeField] public int max_health;
     [SerializeField] public TMP_Text TEMP_Bubble_Health;
@@ -20,7 +33,14 @@ public class BubbleManager : MonoBehaviour
     [SerializeField] public int placableBubbleAmount;
     [SerializeField] public int healthRecoverAmount;
 
+    # region UI
+    [SerializeField] private Material hpMaterial;
+    [SerializeField] private Material bubbleMaterial;
+    private Color m_bubbleDefaultColor;
+    private static readonly int Hp01 = Shader.PropertyToID("_hp01");
+    private static readonly int ColorID = Shader.PropertyToID("_Color");
 
+    #endregion
 
     void Awake()
     {
@@ -30,7 +50,8 @@ public class BubbleManager : MonoBehaviour
     void Start()
     {
         m_current_bubbles = max_bubbles;
-        m_current_health = max_health;
+        current_health = max_health;
+        m_bubbleDefaultColor = bubbleMaterial.GetColor(ColorID);
     }
 
     // Update is called once per frame
@@ -42,9 +63,9 @@ public class BubbleManager : MonoBehaviour
             m_regenTimer = 0;
         }
 
-        TEMP_Bubble_Health.text = "Health: " + m_current_health;
+        TEMP_Bubble_Health.text = "Health: " + current_health;
         TEMP_Bubbles_Remaining.text = "Bubbles: " + m_current_bubbles;
-        if (m_current_health <= 0) {
+        if (current_health <= 0) {
             SceneManager.LoadScene("GameOver");
         }
 
@@ -56,17 +77,33 @@ public class BubbleManager : MonoBehaviour
 
     public static void loseHealth(int deduction) {
 
-        Instance.m_current_health -= deduction;
-        if (Instance.m_current_health < 0) {
-            Instance.m_current_health = 0;
-
+        Instance.current_health -= deduction;
+        if (Instance.current_health < 0) {
+            Instance.current_health = 0;
         }
+        Instance.bubbleMaterial.SetColor(ColorID, Instance.m_bubbleDefaultColor);
+        Instance.StopAllCoroutines();
+        Instance.StartCoroutine(Instance.HealthAnimation(Color.red));
     }
 
     public static void addHealth(int increase) {
-        Instance.m_current_health += increase;
-        if (Instance.m_current_health > Instance.max_health) {
-            Instance.m_current_health = Instance.max_health;
+        Instance.current_health += increase;
+        if (Instance.current_health > Instance.max_health) {
+            Instance.current_health = Instance.max_health;
+            // Instance.bubbleMaterial.SetColor(ColorID, Instance.m_bubbleDefaultColor);
+            // Instance.StopAllCoroutines();
+            // Instance.StartCoroutine(Instance.HealthAnimation(Color.green));
+        }
+    }
+
+    IEnumerator HealthAnimation(Color overlay)
+    {
+        for (float i = 0; i < 0.2f; i += Time.deltaTime)
+        {
+            var t = (0.2f - i) / 0.2f;
+            var c = m_bubbleDefaultColor + overlay * t;
+            bubbleMaterial.SetColor(ColorID, c);
+            yield return null;
         }
     }
 
@@ -76,8 +113,8 @@ public class BubbleManager : MonoBehaviour
 
     public static void setMaxHealth(int newMax) {
         Instance.max_health = newMax;
-        if (Instance.m_current_health > Instance.max_health) {
-            Instance.m_current_health = Instance.max_health;
+        if (Instance.current_health > Instance.max_health) {
+            Instance.current_health = Instance.max_health;
         }
     }
 
