@@ -1,5 +1,8 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using Utils;
 
 public class GridGen : MonoBehaviour
 {
@@ -7,17 +10,24 @@ public class GridGen : MonoBehaviour
     [SerializeField] public float gridScale;
     [SerializeField] public int gridWidth;
     [SerializeField] public int gridHeight;
-    [SerializeField] public static List<GameObject> bubbleTiles;
-    [SerializeField] public static List<GameObject> allGridPoints;
+    [SerializeField] public static List<GridPoint> bubbleTiles = new();
+    [SerializeField] public static List<GridPoint> allGridPoints = new();
+    
+    
+    public static GridGen Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        bubbleTiles = new List<GameObject>();
-        allGridPoints = new List<GameObject>();
+        bubbleTiles = new List<GridPoint>();
+        allGridPoints = new List<GridPoint>();
         genGrid(gridWidth, gridHeight);
         //updateVoidTiles();
-        
     }
 
     // Update is called once per frame
@@ -31,43 +41,49 @@ public class GridGen : MonoBehaviour
             for (int j = -height/2; j < Mathf.CeilToInt(height/2.0f); j++) {
                 GameObject ref1 = Instantiate(gridPoint, new Vector3(i, j, 0), Quaternion.identity);
                 ref1.name = "GridPoint:" + i + "," + j;
-                ref1.GetComponent<GridPoint>().x_pos = i;
-                ref1.GetComponent<GridPoint>().y_pos = j;
-                ref1.GetComponent<GridPoint>().item = GridPoint.itemType.NONE;
-                ref1.GetComponent<GridPoint>().landmark = GridPoint.landmarkType.NONE;
-                allGridPoints.Add(ref1);
+                var p = ref1.GetComponent<GridPoint>();
+                p.x_pos = i;
+                p.y_pos = j;
+                p.item = GridPoint.itemType.NONE;
+                p.landmark = GridPoint.landmarkType.NONE;
+                
+                allGridPoints.Add(p);
                 if ((int)(Mathf.Abs(i)) < 2 && (int)(Mathf.Abs(j)) < 2) {
-                    ref1.GetComponent<GridPoint>().explored = true;
-                    bubbleTiles.Add(ref1);
+                    p.explored = true;
+                    bubbleTiles.Add(p);
                 } else {
-                    ref1.GetComponent<GridPoint>().explored = false;
+                    p.explored = false;
                 }
             }
         }
+        
+        BubblePostProcManager.OnGridInitialize(bubbleTiles);
     }
 
     public static void updateOnBubblePlaced(int i, int j) {
         //Ok, so we've been clicked, add new visible area around where we have clicked
-        if (BubbleManager.current_bubbles == 0) {
+        if (BubbleManager.CurrentBubbles == 0) {
             return;
         }
         BubbleManager.loseBubble();
-
-        GameObject ref1 = GameObject.Find("GridPoint:" + i + "," + j);
+        var p = Find(i, j);
         //make neighbors around ref1 visible/not fog anymore
         //Wall was clicked, turn void neighbors into
         //Look at all tiles around ref1
         
-        ref1.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
-        bubbleTiles.Add(ref1);
+        p.changeType(GridPoint.tileType.FLOOR);
+        bubbleTiles.Add(p);
+        var newlyPlaced = new HashSet<GridPoint> { p };
 
         int i_diff = -1;
         int j_diff = 0;
-        for (int k = 0; k < 3; k++) {
-            GameObject ref2 = GameObject.Find("GridPoint:" + (i + i_diff) + "," + (j + j_diff));
-            if (ref2 != null && ref2.GetComponent<GridPoint>().getType() == GridPoint.tileType.ABYSS) {
-                ref2.GetComponent<GridPoint>().changeType(GridPoint.tileType.FLOOR);
-                bubbleTiles.Add(ref2);
+        for (int k = 0; k < 3; k++)
+        {
+            var q = Find((i + i_diff), (j + j_diff));
+            if (q != null && q.getType() == GridPoint.tileType.ABYSS) {
+                q.changeType(GridPoint.tileType.FLOOR);
+                bubbleTiles.Add(q);
+                newlyPlaced.Add(q);
             }
             if (i_diff == -1 && j_diff == 0) {
                 j_diff = 1;
@@ -76,22 +92,74 @@ public class GridGen : MonoBehaviour
                 j_diff = 1;
             }
         }
+        
+        // check for enclosure
+        if (GraphAlgo.TryCreateBubble(newlyPlaced, out var newBubble))
+        {
+            foreach (var q in newBubble)
+            {
+                q.changeType(GridPoint.tileType.FLOOR);
+                bubbleTiles.Add(q);
+            }
+        }
+        
         updateVoidTiles();
+        BubblePostProcManager.OnGridUpdate(bubbleTiles.Select(bt => bt.GetComponent<GridPoint>()));
     }
 
     static void updateVoidTiles() {
-        foreach (GameObject tile in bubbleTiles) {
-            int tileX = tile.GetComponent<GridPoint>().x_pos;
-            int tileY = tile.GetComponent<GridPoint>().y_pos;
+        foreach (var tile in bubbleTiles) {
+            int tileX = tile.x_pos;
+            int tileY = tile.y_pos;
             for (int i = -2; i < 3; i++) {
                 for (int j = -2; j < 3; j++) {
-                    GameObject Obby = GameObject.Find("GridPoint:" + (tileX + i) + "," + (tileY + j));
-                    if (Obby != null && Obby.GetComponent<GridPoint>().getType() == GridPoint.tileType.FOG) {
-                        Obby.GetComponent<GridPoint>().changeType(GridPoint.tileType.ABYSS);
+                    var p = Find(tileX + i, tileY + j);
+                    if (p != null && p.getType() == GridPoint.tileType.FOG) {
+                        p.changeType(GridPoint.tileType.ABYSS);
                     }
                 }
             }
         }
+    }
+
+    public static GridPoint Find(int i, int j) => GameObject.Find($"GridPoint:{i},{j}")?.GetComponent<GridPoint>();
+    public static bool IsBubble(GridPoint p) => p.type == GridPoint.tileType.FLOOR;
+
+    public static bool IsEdgeBubble(GridPoint p) =>
+        p.type == GridPoint.tileType.FLOOR && GetNeighbors(p, Not(IsBubble)).Count > 0;
+
+    public static Func<GridPoint, bool> IsBubbleWithLandmark(GridPoint.landmarkType type) => (p) =>
+        p.type == GridPoint.tileType.FLOOR && p.hasLandmark && p.landmark == type;
+    
+    public static bool IsBubbleWithAnyItem(GridPoint p) =>
+        p.type == GridPoint.tileType.FLOOR && p.hasLandmark;
+
+    public static bool IsUnexploredBubble(GridPoint p) =>
+        p.type == GridPoint.tileType.FLOOR && !p.explored;
+    
+    public static Func<GridPoint, bool> Not(Func<GridPoint, bool> pred) => (p) => !pred(p);
+
+    public static HashSet<GridPoint> GetNeighbors(GridPoint p, Func<GridPoint, bool> predicate, bool allowDiagonals = true)
+    {
+        var offsets = allowDiagonals ? new []
+        {
+            (-1, -1), (-1, 0), (-1, 1),
+            (0, -1), (0, 1),
+            (1, -1), (1, 0), (1, 1)
+        } : new[]
+        {
+            (-1, 0),
+            (0, -1), (0, 1),
+            (1, 0)
+        };
+
+        var neighbors = offsets.Select(offset =>
+        {
+            var (x, y) = offset;
+            return Find(x + p.x_pos, y + p.y_pos);
+        }).Where(q => q != null && predicate(q));
+
+        return new HashSet<GridPoint>(neighbors);
     }
 
 }

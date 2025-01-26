@@ -8,7 +8,8 @@ public class MainMenu : MonoBehaviour
     
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        AudioManager.StartGameMusic();
+        SceneManager.LoadScene(1);  //PLZ MAKE SURE THIS IS SET RIGHT IN THE BUILD PROFILE SETTINGS OR ELSE I CRI AAAAAAAA
     }
 
     public void Credits()
@@ -19,6 +20,11 @@ public class MainMenu : MonoBehaviour
     public void HideCredits()
     {
         credits.SetActive(false);
+    }
+
+    public void GoToTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void Exit()
