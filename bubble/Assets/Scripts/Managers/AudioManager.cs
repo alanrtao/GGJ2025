@@ -41,7 +41,7 @@ public class AudioManager : MonoBehaviour
 
     public static void PlaySound(Asset sound)
     {
-        Debug.Log($"PLAYING SOUND??? {sound.HumanName()}");
+        // Debug.Log($"PLAYING SOUND??? {sound.HumanName()}");
         FMODUnity.RuntimeManager.PlayOneShot(sound switch
         {
             Asset.Footsteps => Instance.Footsteps,
