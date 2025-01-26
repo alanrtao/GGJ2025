@@ -62,12 +62,12 @@ public class BubbleManager : MonoBehaviour
             regenHealth();
             m_regenTimer = 0;
         }
-
+        // Debug.Log(m_current_health);
         TEMP_Bubble_Health.text = "Health: " + current_health;
         TEMP_Bubbles_Remaining.text = "Bubbles: " + m_current_bubbles;
-        if (current_health <= 0) {
-            SceneManager.LoadScene("GameOver");
-        }
+        // if (m_current_health <= 0) {
+        //     SceneManager.LoadScene("GameOver");
+        // }
 
     }
 
@@ -80,6 +80,7 @@ public class BubbleManager : MonoBehaviour
         Instance.current_health -= deduction;
         if (Instance.current_health < 0) {
             Instance.current_health = 0;
+            SceneManager.LoadScene("GameOver");
         }
         Instance.bubbleMaterial.SetColor(ColorID, Instance.m_bubbleDefaultColor);
         Instance.StopAllCoroutines();

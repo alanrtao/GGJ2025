@@ -14,8 +14,8 @@ public class LoseMenu : MonoBehaviour
         
     }
 
-    public void TryAgain()
+    public void GoToMainMenu()
     {
-        SceneManager.LoadScene("GridSpawnScene");
+        SceneManager.LoadScene("Main Menu");
     }
 }
