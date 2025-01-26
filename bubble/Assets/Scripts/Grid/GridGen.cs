@@ -125,6 +125,19 @@ public class GridGen : MonoBehaviour
 
     public static GridPoint Find(int i, int j) => GameObject.Find($"GridPoint:{i},{j}")?.GetComponent<GridPoint>();
     public static bool IsBubble(GridPoint p) => p.type == GridPoint.tileType.FLOOR;
+
+    public static bool IsEdgeBubble(GridPoint p) =>
+        p.type == GridPoint.tileType.FLOOR && GetNeighbors(p, Not(IsBubble)).Count > 0;
+
+    public static Func<GridPoint, bool> IsBubbleWithLandmark(GridPoint.landmarkType type) => (p) =>
+        p.type == GridPoint.tileType.FLOOR && p.hasLandmark && p.landmark == type;
+    
+    public static bool IsBubbleWithAnyItem(GridPoint p) =>
+        p.type == GridPoint.tileType.FLOOR && p.hasLandmark;
+
+    public static bool IsUnexploredBubble(GridPoint p) =>
+        p.type == GridPoint.tileType.FLOOR && !p.explored;
+    
     public static Func<GridPoint, bool> Not(Func<GridPoint, bool> pred) => (p) => !pred(p);
 
     public static HashSet<GridPoint> GetNeighbors(GridPoint p, Func<GridPoint, bool> predicate)
