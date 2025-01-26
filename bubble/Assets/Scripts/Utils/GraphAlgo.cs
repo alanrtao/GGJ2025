@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using UnityEngine;
+using Random = UnityEngine.Random;
 using Debug = System.Diagnostics.Debug;
 
 namespace Utils
@@ -16,54 +18,61 @@ namespace Utils
         {
             List<GridPoint> minPath = null;
             int dist = int.MaxValue;
+            var candidates = paths.Select(kv => kv.Value);
+            int minDist = candidates.Min(candidate => candidate.Count);
+            candidates = candidates.Where(c => c.Count == minDist);
 
-            foreach (var (_, path) in paths)
-            {
-                if (path.Count < dist)
-                {
-                    minPath = path;
-                    dist = path.Count;
-                }
-            }
-
-            return minPath;
+            var candidateArray = candidates.ToArray();
+            return candidateArray[Random.Range(0, candidateArray.Length)];
         }
         
         public static bool TryFindPath(GridPoint start, Func<GridPoint, bool> isTarget, out Dictionary<GridPoint, List<GridPoint>> paths)
         {
             // pt: prev, pathlen
-            var dist = GridGen.allGridPoints.ToDictionary(
+            Dictionary<GridPoint, (GridPoint, int)> dist = GridGen.bubbleTiles.ToDictionary(
                 p => p,
                 p => (null as GridPoint, int.MaxValue)
                 );
 
             dist[start] = (null, 0);
             var todo = new PriorityQueue<GridPoint, int>();
+            todo.Enqueue(start, 0);
 
-            foreach (var p in GridGen.GetNeighbors(start, GridGen.IsBubble))
-            {
-                dist[p] = (start, 1);
-                todo.Enqueue(p, 1);
-            }
+            var targets = GridGen.bubbleTiles.Where(isTarget);
+            // foreach (var p in targets)
+            // {
+            //     UnityEngine.Debug.Log(p);
+            // }
             
             while (todo.TryDequeue(out var p, out var pDist))
             {
-                foreach (var q in GridGen.GetNeighbors(start, GridGen.IsBubble))
+                var neighbors = GridGen.GetNeighbors(p, GridGen.IsBubble);
+                foreach (var q in neighbors)
                 {
-                    var qDist = pDist + 1;
-                    var (qPrev, qDist_) = dist[q];
-                    if (qDist < qDist_)
+                    if (dist[q].Item2 <= pDist + 1)
                     {
-                        if (qPrev == null)
-                        {
-                            todo.Enqueue(q, qDist);
-                        }
-                        dist[q] = (p, qDist);
+                        continue;
                     }
+                    
+                    dist[q] = (p, pDist + 1);
+                    // if (GridGen.IsBubble(q))
+                    // {
+                    //     UnityEngine.Debug.Log($"{p} -> {q} ({pDist + 1})");
+                    // }
+                    todo.Enqueue(q, pDist + 1);
                 }
+                // UnityEngine.Debug.Log(todo.Count);
             }
+
+            // foreach (var (p, (q, d)) in dist)
+            // {
+            //     if (q != null)
+            //     {
+            //         UnityEngine.Debug.Log($"{p} <- {q} : {d}");
+            //     }
+            // }
             
-            var hasPath = GridGen.allGridPoints.Where(p => isTarget(p) && dist[p].Item1 != null);
+            var hasPath = targets.Where(p => dist[p].Item1 != null);
 
             paths = hasPath.ToDictionary(p => p, p =>
             {
