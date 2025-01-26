@@ -127,6 +127,166 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: title.Path
+      value: event:/Music/Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: inGame.Path
+      value: event:/Music/Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: Footsteps.Path
+      value: event:/Sfx/Footstep
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: HurtBubble.Path
+      value: event:/Sfx/BubbleHurt
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: title.Guid.Data1
+      value: 191877372
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: title.Guid.Data2
+      value: 1201452947
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: title.Guid.Data3
+      value: 1847671729
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: title.Guid.Data4
+      value: -1853795327
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BigBubblePop.Path
+      value: event:/Sfx/BubblePopBig
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: inGame.Guid.Data1
+      value: 1775898872
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: inGame.Guid.Data2
+      value: 1117447640
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: inGame.Guid.Data3
+      value: -1270894948
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: inGame.Guid.Data4
+      value: 953052762
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: SmallBubblePop.Path
+      value: event:/Sfx/BubblePopSmall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BubblePlacement.Path
+      value: event:/Sfx/BubblePlacement
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: Footsteps.Guid.Data1
+      value: -1716766440
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: Footsteps.Guid.Data2
+      value: 1234110712
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: Footsteps.Guid.Data3
+      value: 1498744488
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: Footsteps.Guid.Data4
+      value: -826193154
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: HurtBubble.Guid.Data1
+      value: 177646298
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: HurtBubble.Guid.Data2
+      value: 1244214275
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: HurtBubble.Guid.Data3
+      value: -162910574
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: HurtBubble.Guid.Data4
+      value: -194510649
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BigBubblePop.Guid.Data1
+      value: 474637220
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BigBubblePop.Guid.Data2
+      value: 1092153541
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BigBubblePop.Guid.Data3
+      value: 1176367766
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BigBubblePop.Guid.Data4
+      value: 1170320783
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BubbleLoopTemplate.Path
+      value: event:/Sfx/BubbleCombineShort
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: SmallBubblePop.Guid.Data1
+      value: 2128422937
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: SmallBubblePop.Guid.Data2
+      value: 1136625750
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: SmallBubblePop.Guid.Data3
+      value: 186943662
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: SmallBubblePop.Guid.Data4
+      value: -1265283065
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BubblePlacement.Guid.Data1
+      value: -1355087738
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BubblePlacement.Guid.Data2
+      value: 1104461468
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BubblePlacement.Guid.Data3
+      value: 1434193846
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BubblePlacement.Guid.Data4
+      value: 769426822
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BubbleLoopTemplate.Guid.Data1
+      value: 1794581943
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BubbleLoopTemplate.Guid.Data2
+      value: 1282418075
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BubbleLoopTemplate.Guid.Data3
+      value: 2098005900
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963880351359943352, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
+      propertyPath: BubbleLoopTemplate.Guid.Data4
+      value: 342731820
+      objectReference: {fileID: 0}
     - target: {fileID: 6329507143126196066, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: m_Name
       value: GameManager

@@ -2,7 +2,9 @@ using System;
 using FMOD.Studio;
 using FMODUnity;
 using Unity.Properties;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AudioManager : MonoBehaviour
@@ -34,11 +36,12 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        DontDestroyOnLoad(Instance);
+        //DontDestroyOnLoad(Instance);
     }
 
     public static void PlaySound(Asset sound)
     {
+        Debug.Log($"PLAYING SOUND??? {sound.HumanName()}");
         FMODUnity.RuntimeManager.PlayOneShot(sound switch
         {
             Asset.Footsteps => Instance.Footsteps,
@@ -57,21 +60,35 @@ public class AudioManager : MonoBehaviour
         m_Title = FMODUnity.RuntimeManager.CreateInstance(title);
         m_InGame = FMODUnity.RuntimeManager.CreateInstance(inGame);
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(m_Title, Camera.main!.gameObject); // lol. wtf I'm going to cry :sob:
-        m_Title.start();
+        
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            m_Title.start();
+        } else
+        {
+            m_InGame.start();
+        }
+
     }
 
     private void OnDestroy()
     {
-        m_Title.stop(STOP_MODE.ALLOWFADEOUT);
-        m_Title.release();
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            m_Title.stop(STOP_MODE.ALLOWFADEOUT);
+            m_Title.release();
+        }
+        else
+        {
+            m_InGame.stop(STOP_MODE.ALLOWFADEOUT);
+            m_InGame.release();
+        }
     }
 
     public static void StartGameMusic()
     {
         Instance.m_Title.stop(STOP_MODE.ALLOWFADEOUT);
         Instance.m_Title.release();
-
-        Instance.m_InGame.start();
     }
 
     public static void SetPaused(bool paused)
