@@ -110,4 +110,5 @@ MonoBehaviour:
   placableBubbleAmount: 3
   healthRecoverAmount: 150
   hpMaterial: {fileID: 2100000, guid: cd32f9acb3117c74191bf0940421eebd, type: 2}
+  energyMaterial: {fileID: 2100000, guid: d78b41fc86a281844bfa0262576c2408, type: 2}
   bubbleMaterial: {fileID: 2100000, guid: a634cb2d9a5445042bda9c9eda09b9a2, type: 2}

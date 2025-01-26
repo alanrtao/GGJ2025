@@ -9,8 +9,19 @@ using UnityEngine.Serialization;
 public class BubbleManager : MonoBehaviour
 {
     public static BubbleManager Instance;
+
+    private int current_bubbles
+    {
+        get => m_current_bubbles;
+        set
+        {
+            m_current_bubbles = value;
+            energyMaterial.SetFloat(k_Hp01, ((float) value) / max_bubbles);
+        }
+    }
     private int m_current_bubbles;
-    public static int CurrentBubbles => Instance.m_current_bubbles;
+    
+    public static int CurrentBubbles => Instance.current_bubbles;
     [SerializeField] public int max_bubbles;
 
     private int current_health
@@ -19,14 +30,15 @@ public class BubbleManager : MonoBehaviour
         set
         {
             m_current_health = value;
-            hpMaterial.SetFloat(Hp01, ((float) value) / max_health);
+            hpMaterial.SetFloat(k_Hp01, ((float) value) / max_health);
         }
     }
     
     private int m_current_health;
+    
     [SerializeField] public int max_health;
-    [SerializeField] public TMP_Text TEMP_Bubble_Health;
-    [SerializeField] public TMP_Text TEMP_Bubbles_Remaining;
+    // [SerializeField] public TMP_Text TEMP_Bubble_Health;
+    // [SerializeField] public TMP_Text TEMP_Bubbles_Remaining;
     private float m_regenTimer;
     [SerializeField] public int regenTimerThreshold;
     [SerializeField] public int regenAmount;
@@ -35,10 +47,11 @@ public class BubbleManager : MonoBehaviour
 
     # region UI
     [SerializeField] private Material hpMaterial;
+    [SerializeField] private Material energyMaterial;
     [SerializeField] private Material bubbleMaterial;
     private Color m_bubbleDefaultColor;
-    private static readonly int Hp01 = Shader.PropertyToID("_hp01");
-    private static readonly int ColorID = Shader.PropertyToID("_Color");
+    private static readonly int k_Hp01 = Shader.PropertyToID("_hp01");
+    private static readonly int k_Color = Shader.PropertyToID("_Color");
 
     #endregion
 
@@ -49,9 +62,9 @@ public class BubbleManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        m_current_bubbles = max_bubbles;
+        current_bubbles = max_bubbles;
         current_health = max_health;
-        m_bubbleDefaultColor = bubbleMaterial.GetColor(ColorID);
+        m_bubbleDefaultColor = bubbleMaterial.GetColor(k_Color);
     }
 
     // Update is called once per frame
@@ -63,8 +76,8 @@ public class BubbleManager : MonoBehaviour
             m_regenTimer = 0;
         }
         // Debug.Log(m_current_health);
-        TEMP_Bubble_Health.text = "Health: " + current_health;
-        TEMP_Bubbles_Remaining.text = "Bubbles: " + m_current_bubbles;
+        // TEMP_Bubble_Health.text = "Health: " + current_health;
+        // TEMP_Bubbles_Remaining.text = "Bubbles: " + current_bubbles;
         // if (m_current_health <= 0) {
         //     SceneManager.LoadScene("GameOver");
         // }
@@ -72,7 +85,7 @@ public class BubbleManager : MonoBehaviour
     }
 
     public static void loseBubble() {
-        Instance.m_current_bubbles--;
+        Instance.current_bubbles--;
     }
 
     public static void loseHealth(int deduction) {
@@ -82,7 +95,7 @@ public class BubbleManager : MonoBehaviour
             Instance.current_health = 0;
             SceneManager.LoadScene("GameOver");
         }
-        Instance.bubbleMaterial.SetColor(ColorID, Instance.m_bubbleDefaultColor);
+        Instance.bubbleMaterial.SetColor(k_Color, Instance.m_bubbleDefaultColor);
         Instance.StopAllCoroutines();
         Instance.StartCoroutine(Instance.HealthAnimation(Color.red));
     }
@@ -103,7 +116,7 @@ public class BubbleManager : MonoBehaviour
         {
             var t = (0.2f - i) / 0.2f;
             var c = m_bubbleDefaultColor + overlay * t;
-            bubbleMaterial.SetColor(ColorID, c);
+            bubbleMaterial.SetColor(k_Color, c);
             yield return null;
         }
     }
@@ -120,14 +133,14 @@ public class BubbleManager : MonoBehaviour
     }
 
     public static void refundBubbles() {
-        Instance.m_current_bubbles += (int)(.75 * (Instance.max_bubbles - Instance.m_current_bubbles)); //add back 75% of what we lost
-        Instance.max_bubbles = Instance.m_current_bubbles;
+        Instance.current_bubbles += (int)(.75 * (Instance.max_bubbles - Instance.current_bubbles)); //add back 75% of what we lost
+        Instance.max_bubbles = Instance.current_bubbles;
     }
 
     public static void addBubbles(int bubbleAmount) {
-        Instance.m_current_bubbles += bubbleAmount;
-        if (Instance.m_current_bubbles > Instance.max_bubbles) {
-            Instance.m_current_bubbles = Instance.max_bubbles;
+        Instance.current_bubbles += bubbleAmount;
+        if (Instance.current_bubbles > Instance.max_bubbles) {
+            Instance.current_bubbles = Instance.max_bubbles;
         }
     }
 }
