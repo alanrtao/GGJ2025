@@ -41,7 +41,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _hp01: 1
+
+    - _hp01: 0.98
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
