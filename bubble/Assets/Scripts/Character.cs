@@ -223,7 +223,7 @@ public class Character : TurnObject
 
     bool OnEdge(out GridPoint adjBubble)
     { 
-        var neighbors = GridGen.GetNeighbors(current, GridGen.Not(GridGen.IsBubble));
+        var neighbors = GridGen.GetNeighbors(current, GridGen.Not(GridGen.IsBubble), allowDiagonals: false);
         if (neighbors.Count == 0)
         {
             adjBubble = null;
