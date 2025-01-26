@@ -83,7 +83,7 @@ public class GridPoint : MonoBehaviour
     }
 
     void OnMouseDown() {
-        if (this.type == tileType.ABYSS) {
+        if (!(InputManager.PauseMenu?.activeSelf ?? false) && this.type == tileType.ABYSS) {
              GridGen.updateOnBubblePlaced(x_pos, y_pos);
         }
     }
