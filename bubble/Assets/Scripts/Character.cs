@@ -86,47 +86,60 @@ public class Character : TurnObject
     // state transition table
     TurnResult BubStateDecideForNextTurn(TurnContext ctx, TurnObject to, State prev)
     {
+        // When Bub is transitioning between different states, he first takes a pause
+        // and tells the player what he's going to do. This is the "warn"
+        TurnResult WarnOrDoTransition(State state, Func<TurnResult> doTransition)
+        {
+            if (prev != state)
+            {
+                IndicateState(state);
+                return ScheduleDecideNewState(1, state);
+            }
+            return doTransition();
+        }
+        
         /* landmark */
         if (current.hasLandmark && current.landmark == bubDesire)
         {
-            return BubStateLandmark(null);
+            return WarnOrDoTransition(State.Landmark, () => BubStateLandmark(null));
         }
         if (GraphAlgo.TryFindPath(current, GridGen.IsBubbleWithLandmark(bubDesire), out var pathsToLandmark))
         {
-            return BubStateLandmark(pathsToLandmark);
+            return  WarnOrDoTransition(State.Landmark, () => BubStateLandmark(pathsToLandmark));
         }
 
         /* item */
         if (current.hasItem)
         {
-            return BubStateItem(null);
+            WarnOrDoTransition(State.Item, () => BubStateItem(null));
         }
         if (GraphAlgo.TryFindPath(current, GridGen.IsBubbleWithAnyItem, out var pathsToItem))
         {
-            return BubStateItem(pathsToItem);
+            WarnOrDoTransition(State.Item, () => BubStateItem(pathsToItem));
         }
         
         /* explore */
         if (!current.explored)
         {
-            return BubStateExplore(null);
+            return WarnOrDoTransition(State.Explore, () => BubStateExplore(null));
         }
         if (GraphAlgo.TryFindPath(current, GridGen.IsUnexploredBubble, out var pathsToUnexplored))
         {
-            return BubStateExplore(pathsToUnexplored);
+            return WarnOrDoTransition(State.Explore, () => BubStateExplore(pathsToUnexplored));
         }
         
         /* escape */
         if (OnEdge(out var randomNearbyEdge))
         {
-            return BubStateEscape(randomNearbyEdge, null);
+            return WarnOrDoTransition(State.Escape, () => BubStateEscape(randomNearbyEdge, null));
         }
         if (GraphAlgo.TryFindPath(current, GridGen.IsEdgeBubble, out var pathsToEdge))
         {
-            return BubStateEscape(null, pathsToEdge);
+            return WarnOrDoTransition(State.Escape, () => BubStateEscape(null, pathsToEdge));
         }
 
         /* fallback */
+        IndicateState(State.Idle);
         return ScheduleDecideNewState(1, State.Idle);
     }
 
