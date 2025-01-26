@@ -463,6 +463,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3383124356689616017, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: 'indicatorDesires.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2800000, guid: be55331ea71157f499af2587f05e7023, type: 3}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: 'indicatorDesires.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2800000, guid: e685ad2d962fce94481680908b0efc90, type: 3}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: 'indicatorDesires.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 1113fc8cfd619f34d8b3d6188f68de47, type: 3}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: 'indicatorDesires.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 26a07070d79bc814ca91462ecf562ebd, type: 3}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: 'indicatorDesires.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 50c3ec13ee508a84a8f0052060f54e0f, type: 3}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: 'indicatorDesires.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 4a97ebea93160674689968dd1c3f1efa, type: 3}
+    - target: {fileID: 3412954533298367265, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
+      propertyPath: 'indicatorDesires.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2800000, guid: e43c30281ececa84ab5dddcdd5de3964, type: 3}
     - target: {fileID: 7521988073951910940, guid: fd323ab56f1d94f419dbedbd042fafa7, type: 3}
       propertyPath: m_Name
       value: Bub
@@ -578,6 +610,20 @@ MonoBehaviour:
   gridScale: 0
   gridWidth: 15
   gridHeight: 15
+  itemRatioMult: 1
+  landmarkSprites:
+  - {fileID: 3582216034001131851, guid: be55331ea71157f499af2587f05e7023, type: 3}
+  - {fileID: -1747730391235856359, guid: e685ad2d962fce94481680908b0efc90, type: 3}
+  - {fileID: 7622085138011802891, guid: 1113fc8cfd619f34d8b3d6188f68de47, type: 3}
+  - {fileID: 4582156839054080888, guid: 26a07070d79bc814ca91462ecf562ebd, type: 3}
+  - {fileID: 165225489478970528, guid: 50c3ec13ee508a84a8f0052060f54e0f, type: 3}
+  - {fileID: -4863135007369911072, guid: 4a97ebea93160674689968dd1c3f1efa, type: 3}
+  - {fileID: -8259576210919821962, guid: e43c30281ececa84ab5dddcdd5de3964, type: 3}
+  itemSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &2047867448
 Transform:
   m_ObjectHideFlags: 0
