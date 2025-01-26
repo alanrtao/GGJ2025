@@ -360,18 +360,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
-      propertyPath: bubbleDefaultColor.b
-      value: 0.91199464
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
-      propertyPath: bubbleDefaultColor.g
-      value: 0.9528302
-      objectReference: {fileID: 0}
-    - target: {fileID: 4852975464009283038, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
-      propertyPath: bubbleDefaultColor.r
-      value: 0.7146226
-      objectReference: {fileID: 0}
     - target: {fileID: 6329507143126196066, guid: e921c8dd832531648b8f256dfa81abd9, type: 3}
       propertyPath: m_Name
       value: GameManager
