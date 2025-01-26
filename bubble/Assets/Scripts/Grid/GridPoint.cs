@@ -10,7 +10,29 @@ public class GridPoint : MonoBehaviour
         WALL //impassable
     }
 
-    bool explored; // only matters for floor tiles - if Bub has walked on it
+    public enum itemType {
+        NONE,
+        NEEDLE,
+        BUBBLE_WAND,
+        BUBBLE_BOTTLE
+    }
+
+    public enum landmarkType {
+        NONE,
+        DES_1,
+        DES_2,
+        DES_3,
+        DES_4,
+        DES_5,
+        DES_6,
+        DES_7
+    }
+
+    public bool explored; // only matters for floor tiles - if Bub has walked on it
+    public bool hasLandmark;
+    public bool hasItem;
+    public itemType item;
+    public landmarkType landmark;
     [SerializeField] public tileType type;
     public int x_pos;
     public int y_pos;
@@ -36,8 +58,10 @@ public class GridPoint : MonoBehaviour
         if (type == tileType.ABYSS) {
             this.GetComponent<SpriteRenderer>().color = Color.white;
         }
-        if (type == tileType.FLOOR) {
-            this.GetComponent<SpriteRenderer>().color = Color.black;
+        if (type == tileType.FLOOR && explored == false) {
+            this.GetComponent<SpriteRenderer>().color = Color.green;
+        } else if (type == tileType.FLOOR) {
+            this.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         if (type == tileType.FOG) {
             this.GetComponent<SpriteRenderer>().color = Color.gray;
@@ -46,6 +70,12 @@ public class GridPoint : MonoBehaviour
 
     public tileType getType() {
         return type;
+    }
+    public itemType getItem() {
+        return item;
+    }
+    public landmarkType getLandmark() {
+        return landmark;
     }
 
     void OnMouseDown() {
