@@ -62,7 +62,7 @@ public class GridGen : MonoBehaviour
 
     public static void updateOnBubblePlaced(int i, int j) {
         //Ok, so we've been clicked, add new visible area around where we have clicked
-        if (BubbleManager.Instance.current_bubbles == 0) {
+        if (BubbleManager.CurrentBubbles == 0) {
             return;
         }
         BubbleManager.loseBubble();
