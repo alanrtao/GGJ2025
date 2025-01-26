@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 4962abdf381818245ab1a49309f523b9
+guid: e685ad2d962fce94481680908b0efc90
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1921337063021962082
-    second: tutorial_0
+      213: 6795663855707495781
+    second: Bubble_HUD-2_3_0
+  - first:
+      213: -1747730391235856359
+    second: Bubble_HUD-2_3_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,19 +100,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -126,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tutorial_0
+      name: Bubble_HUD-2_3_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1663
-        height: 759
+        x: 126
+        y: 689
+        width: 17
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e9c98c0fe1a0655e0800000000000000
-      internalID: -1921337063021962082
+      spriteID: 56d1864954c0f4e50800000000000000
+      internalID: 6795663855707495781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bubble_HUD-2_3_1
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 524
+        width: 183
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9187b331870deb7e0800000000000000
+      internalID: -1747730391235856359
       vertices: []
       indices: 
       edges: []
@@ -161,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tutorial_0: -1921337063021962082
+      Bubble_HUD-2_3_0: 6795663855707495781
+      Bubble_HUD-2_3_1: -1747730391235856359
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

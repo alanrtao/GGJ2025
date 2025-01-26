@@ -14,7 +14,8 @@ public class GridPoint : MonoBehaviour
         NONE,
         NEEDLE,
         BUBBLE_WAND,
-        BUBBLE_BOTTLE
+        BUBBLE_BOTTLE,
+        SPIKE_BALL
     }
 
     public enum landmarkType {
@@ -40,6 +41,7 @@ public class GridPoint : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        this.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void InitTypeFromCoords()
@@ -59,16 +61,9 @@ public class GridPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (type == tileType.ABYSS) {
-            this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        }
-        if (type == tileType.FLOOR && explored == false) {
-            this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);;
-        } else if (type == tileType.FLOOR) {
-            this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        }
-        if (type == tileType.FOG) {
-            this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        if (type != tileType.FOG && hasLandmark && this.GetComponent<SpriteRenderer>().enabled == false) {
+            this.GetComponent<SpriteRenderer>().enabled = true;
+            this.GetComponent<SpriteRenderer>().sprite = GameObject.Find("GridSpawner").GetComponent<GridGen>().landmarkSprites[((int)landmark) - 1];
         }
     }
 
