@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Character : TurnObject
 {
     [SerializeField] GameObject currentTargetPoint;
@@ -166,7 +166,7 @@ public class Character : TurnObject
             allFulfilled = allFulfilled && fulfilledDesires[i];
         }
         if (allFulfilled) {
-            //WIN CODE GOES HERE
+            SceneManager.LoadScene("YouWin");
         }
 
         int pickDesire = Random.Range(0,7);
