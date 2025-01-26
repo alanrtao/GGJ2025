@@ -41,12 +41,12 @@ public class BubbleManager : MonoBehaviour
             regenHealth();
             m_regenTimer = 0;
         }
-
+        // Debug.Log(m_current_health);
         TEMP_Bubble_Health.text = "Health: " + m_current_health;
         TEMP_Bubbles_Remaining.text = "Bubbles: " + m_current_bubbles;
-        if (m_current_health <= 0) {
-            SceneManager.LoadScene("GameOver");
-        }
+        // if (m_current_health <= 0) {
+        //     SceneManager.LoadScene("GameOver");
+        // }
 
     }
 
@@ -59,7 +59,7 @@ public class BubbleManager : MonoBehaviour
         Instance.m_current_health -= deduction;
         if (Instance.m_current_health < 0) {
             Instance.m_current_health = 0;
-
+            SceneManager.LoadScene("GameOver");
         }
     }
 
