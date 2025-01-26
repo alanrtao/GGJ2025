@@ -65,6 +65,10 @@ public class GridPoint : MonoBehaviour
             this.GetComponent<SpriteRenderer>().enabled = true;
             this.GetComponent<SpriteRenderer>().sprite = GameObject.Find("GridSpawner").GetComponent<GridGen>().landmarkSprites[((int)landmark) - 1];
         }
+        if (type != tileType.FOG && hasItem && this.GetComponent<SpriteRenderer>().enabled == false) {
+            this.GetComponent<SpriteRenderer>().enabled = true;
+            this.GetComponent<SpriteRenderer>().sprite = GameObject.Find("GridSpawner").GetComponent<GridGen>().itemSprites[((int)item) - 1];
+        }
     }
 
     public tileType getType() {
