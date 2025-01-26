@@ -73,8 +73,7 @@ public class GridGen : MonoBehaviour
         
         p.changeType(GridPoint.tileType.FLOOR);
         bubbleTiles.Add(p);
-        var newlyPlaced = new HashSet<GridPoint>();
-        newlyPlaced.Add(p);
+        var newlyPlaced = new HashSet<GridPoint> { p };
 
         int i_diff = -1;
         int j_diff = 0;
@@ -140,13 +139,18 @@ public class GridGen : MonoBehaviour
     
     public static Func<GridPoint, bool> Not(Func<GridPoint, bool> pred) => (p) => !pred(p);
 
-    public static HashSet<GridPoint> GetNeighbors(GridPoint p, Func<GridPoint, bool> predicate)
+    public static HashSet<GridPoint> GetNeighbors(GridPoint p, Func<GridPoint, bool> predicate, bool allowDiagonals = true)
     {
-        var offsets = new []
+        var offsets = allowDiagonals ? new []
         {
             (-1, -1), (-1, 0), (-1, 1),
             (0, -1), (0, 1),
             (1, -1), (1, 0), (1, 1)
+        } : new[]
+        {
+            (-1, 0),
+            (0, -1), (0, 1),
+            (1, 0)
         };
 
         var neighbors = offsets.Select(offset =>

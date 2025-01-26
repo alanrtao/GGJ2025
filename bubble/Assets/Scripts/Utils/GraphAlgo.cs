@@ -80,63 +80,62 @@ namespace Utils
         }
         
         /**
-         * Returns null if no 
+         * Returns null if enclosed area could be filled
          */
         public static bool TryCreateBubble(HashSet<GridPoint> newlyPlaced, out HashSet<GridPoint> newBubble)
         {
-            HashSet<GridPoint> allNeighbors = new HashSet<GridPoint>(
-                newlyPlaced.SelectMany(p => GridGen.GetNeighbors(p, NotBubble)).Where(p => !newlyPlaced.Contains(p))) ;
-            var enclosures = allNeighbors.Select(Bfs);
-
-            // merge equivalent enclosures (completely overlapping)
+            var visited = new HashSet<GridPoint>();
+            var enclosures = new List<HashSet<GridPoint>>();
+            foreach (var p in GridGen.allGridPoints.Where(NotBubble))
             {
-                var enclosures_ = new List<HashSet<GridPoint>>();
-                foreach (var enc in enclosures)
+                if (visited.Contains(p))
                 {
-                    // stepping into the middle of a bubble
-                    if (enc.Count <= 1)
-                    {
-                        continue;
-                    }
-                    
-                    foreach (var enc_ in enclosures_)
-                    {
-                        foreach (var q in enc_)
-                        {
-                            if (enc.Contains(q)) // only care about complete overlap, meaning one overlap check is enough
-                            {
-                                goto has_same;
-                            }
-                        }
-                    }
-                    
-                    enclosures_.Add(enc);
-                    
-                    has_same:
                     continue;
                 }
 
-                enclosures = enclosures_;
+                var enc = EnclosureBfs(p);
+                // UnityEngine.Debug.Log($"Enclosure {enc.Count}");
+                
+                var bubbleBorder = new HashSet<GridPoint>();
+                foreach (var q in enc)
+                {
+                    visited.Add(q);
+                    foreach (var r in GridGen.GetNeighbors(q, GridGen.IsBubble))
+                    {
+                        bubbleBorder.Add(r);
+                    }
+                }
+
+                foreach (var q in newlyPlaced)
+                {
+                    if (bubbleBorder.Contains(q))
+                    {
+                        enclosures.Add(enc);
+                        break;
+                    }
+                    else
+                    {
+                        // UnityEngine.Debug.Log($"Enclosure {enc.Count} does not border newly placed points");
+                    }
+                }
             }
 
-            if (enclosures.Count() == 1)
+            if (enclosures.Count() <= 1)
             {
                 newBubble = null;
                 return false;
             }
 
             var smallestEnclosure = enclosures.Min(enc => enc.Count);
-            enclosures = enclosures.Where(enc => enc.Count == smallestEnclosure);
-            
-
+            enclosures = enclosures.Where(enc => enc.Count == smallestEnclosure).ToList();
             newBubble = enclosures.First(); // fuck it let RNG do the tie breaking
             return true;
         }
 
-        private static HashSet<GridPoint> Bfs(GridPoint start)
+        private static HashSet<GridPoint> EnclosureBfs(GridPoint start)
         {
             var reached = new HashSet<GridPoint>(new[] { start });
-            var todo = new Queue<GridPoint>(GridGen.GetNeighbors(start, NotBubble));
+            var todo = new Queue<GridPoint>(GridGen.GetNeighbors(start, NotBubble, allowDiagonals: false));
             while (todo.TryDequeue(out var p))
             {
                 if (!reached.Add(p))
@@ -144,7 +143,7 @@ namespace Utils
                     continue;
                 }
 
-                foreach (var q in GridGen.GetNeighbors(p, NotBubble))
+                foreach (var q in GridGen.GetNeighbors(p, NotBubble, allowDiagonals: false))
                 {
                     todo.Enqueue(q);   
                 }
