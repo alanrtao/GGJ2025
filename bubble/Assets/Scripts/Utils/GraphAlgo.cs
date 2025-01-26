@@ -109,6 +109,7 @@ namespace Utils
                 foreach (var q in enc)
                 {
                     visited.Add(q);
+                    
                     foreach (var r in GridGen.GetNeighbors(q, GridGen.IsBubble))
                     {
                         bubbleBorder.Add(r);
@@ -128,16 +129,35 @@ namespace Utils
                     }
                 }
             }
-
+            
             if (enclosures.Count() <= 1)
             {
                 newBubble = null;
                 return false;
             }
 
-            var smallestEnclosure = enclosures.Min(enc => enc.Count);
-            enclosures = enclosures.Where(enc => enc.Count == smallestEnclosure).ToList();
-            newBubble = enclosures.First(); // fuck it let RNG do the tie breaking
+            var enclosures_ = enclosures.Where(enc =>
+            {
+                foreach (var p in enc)
+                {
+                    if (GridGen.IsMapBorder(p))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+
+            if (!enclosures_.Any())
+            {
+                newBubble = null;
+                return false;
+            }
+
+            var smallestEnclosure = enclosures_.Min(enc => enc.Count);
+            enclosures_ = enclosures_.Where(enc => enc.Count == smallestEnclosure).ToList();
+            newBubble = enclosures_.First(); // fuck it let RNG do the tie breaking
             return true;
         }
 
